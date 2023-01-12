@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Flex, Hide, Show, Text, Icon, Button, IconButton, Kbd, Heading} from '@chakra-ui/react';
+import { Box, Flex, Hide, Show, Text, Icon, Button, IconButton, Kbd, Heading, Image} from '@chakra-ui/react';
 // --- ICONS CHAKRA ---
 import { MoonIcon, HamburgerIcon, Search2Icon} from '@chakra-ui/icons';
 // --- ICON REACT ---
@@ -35,9 +35,10 @@ export const NavBar = () => {
                         <Hide below='767px'>
                             <IconButton icon={<FaGithub/>} mr='2'/>
                             <IconButton icon={<FaLinkedinIn />} mr='2'/>
+                            <IconButton icon={<MoonIcon />} mr='2'/>
                         </Hide>
-                        <IconButton icon={<MoonIcon />} mr='2'/>
                         <Show below='767px'>
+                            <Image borderRadius='full' boxSize='10' src='https://bit.ly/dan-abramov' alt='Dan Abramov' mr='2'/>
                             <IconButton icon={<HamburgerIcon />} />
                         </Show>
                     </Flex>
