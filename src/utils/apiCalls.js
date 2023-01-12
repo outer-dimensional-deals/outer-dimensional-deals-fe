@@ -19,8 +19,8 @@
     //++DLC++
     //++TRAILERS++
     //++STORES++
-export async function findGamesByParams() {
-    const response = await fetch(`https://rawg.io/api/games${parameter}?token&key=${process.env.REACT_APP_APIKEY}`)
+export async function searchRawgByParams() {
+    const response = await fetch(`https://rawg.io/api/${parameter}?token&key=${process.env.REACT_APP_APIKEY}`)
     if (!response.ok) {
         const data = await response.json()
         return data
