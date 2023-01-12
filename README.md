@@ -1,70 +1,33 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Function | HTTP request | Description
+------------- | ------------- | -------------
+creator_roles_list | **GET** /creator-roles | Get a list of creator positions (jobs).
+creators_list | **GET** /creators | Get a list of game creators.
+creators_read | **GET** /creators/{id} | Get details of the creator.
+developers_list | **GET** /developers | Get a list of game developers.
+developers_read | **GET** /developers/{id} | Get details of the developer.
+games_achievements_read | **GET** /games/{id}/achievements | Get a list of game achievements.
+games_additions_list | **GET** /games/{id}/additions | Get a list of DLC&#39;s for the game, GOTY and other editions, companion apps, etc.
+games_development_team_list | **GET** /games/{id}/development-team | Get a list of individual creators that were part of the development team.
+games_game_series_list | **GET** /games/{id}/game-series | Get a list of games that are part of the same series.
+games_list | **GET** /games | Get a list of games.
+games_movies_read | **GET** /games/{id}/movies | Get a list of game trailers.
+games_parent_games_list | **GET** /games/{id}/parent-games | Get a list of parent games for DLC&#39;s and editions.
+games_read | **GET** /games/{id} | Get details of the game.
+games_reddit_read | **GET** /games/{id}/reddit | Get a list of most recent posts from the game&#39;s subreddit.
+games_screenshots_list | **GET** /games/{id}/screenshots | Get screenshots for the game.
+games_sitemap_read | **GET** /games/sitemap | Get The Sitemap Games list.
+games_stores_list | **GET** /games/{id}/stores | Get links to the stores that sell the game.
+games_suggested_read | **GET** /games/{id}/suggested | Get a list of visually similar games.
+games_twitch_read | **GET** /games/{id}/twitch | Get streams on Twitch associated with the game .
+games_youtube_read | **GET** /games/{id}/youtube | Get videos from YouTube associated with the game.
+genres_list | **GET** /genres | Get a list of video game genres.
+genres_read | **GET** /genres/{id} | Get details of the genre.
+platforms_list | **GET** /platforms | Get a list of video game platforms.
+platforms_lists_parents_list | **GET** /platforms/lists/parents | Get a list of parent platforms.
+platforms_read | **GET** /platforms/{id} | Get details of the platform.
+publishers_list | **GET** /publishers | Get a list of video game publishers.
+publishers_read | **GET** /publishers/{id} | Get details of the publisher.
+stores_list | **GET** /stores | Get a list of video game storefronts.
+stores_read | **GET** /stores/{id} | Get details of the store.
+tags_list | **GET** /tags | Get a list of tags.
+tags_read | **GET** /tags/{id} | Get details of the tag.
