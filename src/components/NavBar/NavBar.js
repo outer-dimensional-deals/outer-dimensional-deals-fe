@@ -7,7 +7,7 @@ import { FaLinkedinIn, FaGithub } from 'react-icons/fa'
 import { GiAstronautHelmet } from 'react-icons/gi'
 import './NavBar.css';
 
-export const NavBar = () => {
+export const NavBar = ({onOpen}) => {
 
     return (
         <Box maxW='100%' h='5em' background='grey' p='5'>
@@ -21,7 +21,7 @@ export const NavBar = () => {
                     </Flex>
                 </Box>
                 <Hide below='479px'>
-                    <Button w='md' leftIcon={<Search2Icon/>} display='flex' alignItems='center' m='4'>
+                    <Button w='md' leftIcon={<Search2Icon/>} onClick={() => {onOpen()}} display='flex' alignItems='center' m='4'>
                         <Flex w='100%' justifyContent='space-between'>
                             <Text>Search for Game</Text>
                             <Flex>
