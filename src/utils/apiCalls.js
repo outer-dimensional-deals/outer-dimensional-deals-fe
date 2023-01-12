@@ -19,7 +19,8 @@
     //++DLC++
     //++TRAILERS++
     //++STORES++
-export async function searchRawgByParams() {
+
+export async function searchRawgApiByParams() {
     const response = await fetch(`https://rawg.io/api/${parameter}?token&key=${process.env.REACT_APP_APIKEY}`)
     if (!response.ok) {
         const data = await response.json()
