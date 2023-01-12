@@ -1,4 +1,4 @@
-import { ChakraProvider, Flex } from '@chakra-ui/react';
+import { ChakraProvider, Flex, Box, Hide, Show, Text } from '@chakra-ui/react';
 import React from 'react';
 
 // --- COMPONENTS ---
@@ -16,8 +16,21 @@ export const App = () => {
   return (
     <ChakraProvider>
       <Flex flexDirection='column'>
+        <Box>
+          <Text>Banner</Text>
+        </Box>
         <NavBar />
-        <GameCardContainer />
+        <Box h='100vh' w='100vw'>
+          <Hide below='767px'>
+            <Flex>
+              <SideBar/>
+              <GameCardContainer />
+            </Flex>
+          </Hide>
+          <Show below='767px'>
+            <GameCardContainer/>
+          </Show>
+        </Box>
       </Flex>
     </ChakraProvider>
   );
