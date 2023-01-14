@@ -1,18 +1,22 @@
 import React from 'react';
-import { Box, Heading, Text, Flex, Button, IconButton, Icon, HStack, VStack, Stack, Divider, Image} from '@chakra-ui/react';
+import { Box, Heading, Text, Flex, Button, IconButton, Icon, HStack, VStack, Stack, Divider, Image, Collapse, useDisclosure} from '@chakra-ui/react';
 // --- CHAKRA ICONS ---
 import { ArrowRightIcon, ArrowLeftIcon, ChevronDownIcon } from '@chakra-ui/icons';
 // --- REACT ICONS ---
 import { IoGameController, IoPersonSharp } from 'react-icons/io5';
-import { FaHashtag, FaCode, FaPaperPlane, FaTheaterMasks } from 'react-icons/fa';
+import { FaHashtag, FaCode, FaPaperPlane, FaTheaterMasks, FaArrowsAltH } from 'react-icons/fa';
 import { MdLocalGroceryStore } from 'react-icons/md'
 import './SideBar.css';
 
 export const SideBar = () => {
+    const { isOpen, onOpen, onClose,  onToggle} = useDisclosure();
+
 
     return (
+        <>
+        <Collapse in={!isOpen} animateOpacity>
         <Box w='300px' h='100vh' background='green.100' overflow='scroll'>
-            <Flex justifyContent='space-between' w='100%' h='100%'>
+            {/* <Flex justifyContent='space-between' w='100%' h='100%'> */}
                 <Box w='100%' h='100%'>
                     <Flex flexDirection='column' alignItems='center' w='100%' h='100%'>
                         <Box w='100%' h='100%'>
@@ -54,11 +58,13 @@ export const SideBar = () => {
                         </Box>
                     </Flex>
                 </Box>
-                <Flex justifyContent='center' alignItems='center' h='100vh'>
-                {/* <IconButton icon={<ArrowRightIcon/>}/> */}
-                    <IconButton icon={<ArrowLeftIcon/>} />
-                </Flex>
-            </Flex>
+            {/* </Flex> */}
         </Box>
+        </Collapse>  
+        <Flex justifyContent='center' alignItems='center' h='100vh'>
+            {!isOpen && <IconButton icon={<ArrowLeftIcon/>} onClick={onOpen}/>}
+            {isOpen && <IconButton icon={<ArrowRightIcon/>} onClick={onClose}/>}
+        </Flex>
+        </>
     )
 }

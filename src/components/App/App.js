@@ -1,5 +1,6 @@
 import { ChakraProvider, Flex, Box, Hide, Show, Text, useDisclosure } from '@chakra-ui/react';
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+import { useKey } from '../../hooks/useKey';
 
 // --- COMPONENTS ---
 import { NavBar } from '../NavBar/NavBar';
@@ -8,22 +9,38 @@ import { Search } from '../Search/Search'
 import { SideBar } from '../SideBar/SideBar';
 import './App.css';
 
+//AND FUNCTION
+
+const and = (a, b) => a && b
+
 export const App = () => {
 
+  //--CUSTOM HOOK--
+  const shift = and(useKey('shift'), useKey('s'))
+  const escape = useKey('escape')
 
   //--CHAKRA-HOOKS--
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+  useEffect(() => {
 
+      if (shift) {
+        onOpen()
+      }
 
-  
+      if(escape) {
+        onClose()
+      }
+
+  }, [shift, escape])
+
   return (
     <ChakraProvider>
       <Flex flexDirection='column'>
         <Box>
           <Text>Banner</Text>
         </Box>
-        <NavBar onOpen={onOpen}/>
+        <NavBar onOpen={onOpen} />
         <Search isOpen={isOpen} onClose={onClose}/>
         <Box h='100vh' w='100vw'>
           <Hide below='767px'>
@@ -33,7 +50,7 @@ export const App = () => {
             </Flex>
           </Hide>
           <Show below='767px'>
-            <GameCardContainer/>
+            <GameCardContainer />
           </Show>
         </Box>
       </Flex>

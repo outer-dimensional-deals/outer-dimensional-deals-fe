@@ -25,8 +25,8 @@ export const NavBar = ({onOpen}) => {
                         <Flex w='100%' justifyContent='space-between'>
                             <Text>Search for Game</Text>
                             <Flex>
-                                <span><Kbd>⌘</Kbd></span>
-                                <span><Kbd>K</Kbd></span>
+                                <span><Kbd>Shift</Kbd></span>
+                                <span><Kbd>S</Kbd></span>
                             </Flex>
                         </Flex>
                     </Button>
