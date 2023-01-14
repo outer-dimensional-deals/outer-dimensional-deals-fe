@@ -36,7 +36,7 @@ export const App = () => {
 
   return (
     <ChakraProvider>
-      <Flex flexDirection='column'>
+      <Flex flexDirection='column' background='blue.200'>
         <Box>
           <Text>Banner</Text>
         </Box>
