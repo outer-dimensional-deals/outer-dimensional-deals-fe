@@ -2,10 +2,8 @@ import React, {useState, useEffect} from 'react';
 import './App.css';
 import { ChakraProvider, Flex, Box, Hide, Show, Text, useDisclosure } from '@chakra-ui/react';
 import { useKey } from '../../hooks/useKey';
-
 // --APICALL--
 import { searchRawgApiByParams, listOfStores } from '../../utils/apiCalls';
-
 // --- COMPONENTS ---
 import { NavBar } from '../NavBar/NavBar';
 import { GameCardContainer } from '../GameCardContainer/GameCardContainer';
@@ -20,9 +18,11 @@ export const App = () => {
   //--CUSTOM HOOK--
   const shift = and(useKey('shift'), useKey('s'))
   const escape = useKey('escape')
-
   //--CHAKRA-HOOKS--
   const { isOpen, onOpen, onClose } = useDisclosure();
+  //--REACT-HOOKS--
+  const [ input, setInput ] = useState('')
+  const [data, setData] = useState([])
 
   useEffect(() => {
 
@@ -36,23 +36,29 @@ export const App = () => {
 
   }, [shift, escape])
 
-  const [data, setData] = useState([])
 
-  // SEARCH FUNCTIONALITY 
-  // -- SIDEBAR --
   const filterGamesByParameter = (parameter) => {
-
     console.log(parameter)
-    searchRawgApiByParams(parameter)
-    .then(results => {
-      console.log(results)
-    })
-    .catch(error => {
-      console.log(error)
-    })
-
+    // searchRawgApiByParams(parameter)
+    // .then(results => {
+    //   console.log(results)
+    // })
+    // .catch(error => {
+    //   console.log(error)
+    // })
   }
 
+  const handleChange = (event) => {
+    setInput(event.target.value)
+  }
+
+  const handleSubmit = () => {
+    //Convert to slug
+    let slug = "games?search=" + input.split(' ').join('-').toLowerCase() 
+    //Search Title
+    filterGamesByParameter(slug)
+    onClose()
+  }
 
   // --CHEAPSHARK--
   const storesApiCall = () => {
@@ -73,7 +79,7 @@ export const App = () => {
           <Text>Banner</Text>
         </Box>
         <NavBar onOpen={onOpen} />
-        <Search isOpen={isOpen} onClose={onClose}/>
+        <Search isOpen={isOpen} onClose={onClose} handleChange={handleChange} handleSubmit={handleSubmit}/>
         <Box h='100vh' w='100vw'>
           <Hide below='767px'>
             <Flex>

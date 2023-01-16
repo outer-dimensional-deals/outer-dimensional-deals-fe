@@ -28,7 +28,7 @@ export const Search = ({isOpen, onClose, handleChange, handleSubmit}) => {
             <ModalContent>
                 <InputGroup size='lg'>
                     <InputLeftElement children={<SearchIcon />}/>
-                    <Input placeholder='Search for game' onChange={event => handleChange(event)} onKeyPress={event => {if (event.key === 'Enter') handleSubmit()}} />
+                    <Input placeholder='Search for game title' onChange={event => handleChange(event)} onKeyPress={event => {if (event.key === 'Enter') handleSubmit()}} />
                     <InputRightElement children={<Kbd>ENTER</Kbd>} w='15%'/>
                 </InputGroup>
             </ModalContent>

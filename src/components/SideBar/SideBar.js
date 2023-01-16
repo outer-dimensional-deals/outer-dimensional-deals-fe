@@ -30,7 +30,7 @@ const genresList = genres.map(genre => {
 //--PLATFORMS BUTTON GROUP--
 const platformsList = parentPlatforms.map(platform => {
     return (
-        <Button leftIcon={platform.icon} onClick={event => filterGamesByParameter(event.target.value)} value={platform.id}>{platform.name}</Button>
+        <Button leftIcon={platform.icon} onClick={event => filterGamesByParameter(`games?parent_platforms=${event.target.value}`)} value={platform.id}>{platform.name}</Button>
     )
 })
 //--STORES BUTTON GROUP---
@@ -44,7 +44,7 @@ const cheapsharkStoresList = cheapshark.map(store => {
     return (
         <>
         {!isOpen &&  
-        <Box w='27em' h='100vh' background='green.100' className='SideBar'>
+        <Box w='28em' h='100vh' background='green.100' className='SideBar'>
                <Tabs isFitted w='100%' h='100%' orientation='vertical' variant='enclosed'>
                  <TabList aria-orientation='vertical'>
                     <Tab>
@@ -90,11 +90,9 @@ const cheapsharkStoresList = cheapshark.map(store => {
                     </TabPanel>
                     <TabPanel>
                         <Stack direction='column' spacing='24px'>
-                            <Text fontSize='md' align='center' as='b'>STORES</Text>
-                            <Button onClick={() => {}}>STEAM</Button>
-                            <Button onClick={event => {}}>EPIC</Button>
-                            <Button onClick={event => {}}>GOG</Button>
-                            <Button onClick={event => {}}>GMG</Button>
+                            <Text fontSize='md' align='center' as='b'>WISHLIST</Text>
+                            <Button>TOP DEALS</Button>
+                            <Button onClick={() => {}}>YOUR WISHLIST</Button>
                         </Stack>
                     </TabPanel>
                     <TabPanel>
@@ -135,8 +133,8 @@ const cheapsharkStoresList = cheapshark.map(store => {
             </Tabs>
         </Box>}
         <Flex justifyContent='center' alignItems='center' h='100vh'>
-            {!isOpen && <IconButton icon={<ArrowRightIcon/>} onClick={onOpen}/>}
-            {isOpen && <IconButton icon={<ArrowLeftIcon/>} onClick={onClose}/>}
+            {!isOpen && <IconButton icon={<ArrowLeftIcon/>} onClick={onOpen}/>}
+            {isOpen && <IconButton icon={<ArrowRightIcon/>} onClick={onClose}/>}
         </Flex>
         </>
     )
