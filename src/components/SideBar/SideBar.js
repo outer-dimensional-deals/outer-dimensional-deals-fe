@@ -1,40 +1,50 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Heading, Text, Flex, Button, IconButton, Icon, HStack, VStack, Stack, Divider, Image, Collapse, useDisclosure, Tabs, Tab, TabList, TabPanels, TabPanel} from '@chakra-ui/react';
+import './SideBar.css';
+import { Box, Text, Flex, Button, IconButton, Icon, Stack, Image, useDisclosure, Tabs, Tab, TabList, TabPanels, TabPanel, ButtonGroup} from '@chakra-ui/react';
 // --- CHAKRA ICONS ---
 import { ArrowRightIcon, ArrowLeftIcon } from '@chakra-ui/icons';
 // --- REACT ICONS ---
 import { IoGameController, IoPersonSharp } from 'react-icons/io5';
-
-import { FaHashtag, 
+import { MdLocalGroceryStore } from 'react-icons/md'
+import { 
+    FaHashtag, 
     FaCode, 
     FaPaperPlane, 
-    FaTheaterMasks, 
-    FaBomb, 
-    FaChessKing, 
-    FaShieldAlt, 
-    FaMagic, 
-    FaPuzzlePiece, 
-    FaBullseye, 
-    FaCar, FaFootballBall } from 'react-icons/fa';
+    FaTheaterMasks,  
+} from 'react-icons/fa';
+// --DUMBY DATA--
+import { genres } from '../../dumby-data/genresData';
+import { cheapshark } from '../../dumby-data/cheapSharkStoresData';
+import { parentPlatforms } from '../../dumby-data/parentPlatformsData';
 
-import { MdLocalGroceryStore } from 'react-icons/md'
-import { GiRevolver } from 'react-icons/gi'
-import './SideBar.css';
+export const SideBar = ({storesApiCall, filterGamesByParameter}) => {
 
-export const SideBar = () => {
     const { isOpen, onOpen, onClose,  onToggle} = useDisclosure();
 
-    useEffect(() => {
-
-        onOpen()
-
-    }, [])
+//--GENRES BUTTON GROUP--
+const genresList = genres.map(genre => {
+    return ( 
+        <Button leftIcon={genre.icon} onClick={event => filterGamesByParameter(`games?genres=${event.target.value}`)} value={genre.id}>{genre.name}</Button>
+    )
+})
+//--PLATFORMS BUTTON GROUP--
+const platformsList = parentPlatforms.map(platform => {
+    return (
+        <Button leftIcon={platform.icon} onClick={event => filterGamesByParameter(event.target.value)} value={platform.id}>{platform.name}</Button>
+    )
+})
+//--STORES BUTTON GROUP---
+const cheapsharkStoresList = cheapshark.map(store => {
+    return (
+        <Button leftIcon={store.images !== null ? store.images : ''}>{store.storeName}</Button>
+    )
+})
 
 
     return (
         <>
-        {isOpen &&  
-        <Box w='25em' h='100vh' background='green.100' className='SideBar'>
+        {!isOpen &&  
+        <Box w='27em' h='100vh' background='green.100' className='SideBar'>
                <Tabs isFitted w='100%' h='100%' orientation='vertical' variant='enclosed'>
                  <TabList aria-orientation='vertical'>
                     <Tab>
@@ -65,7 +75,7 @@ export const SideBar = () => {
                 <TabPanels>
                     <TabPanel>
                         <Stack direction='column' spacing='24px'>
-                            <Text fontSize='md' as='b'>USERNAME</Text>
+                            <Text fontSize='md' align='center' as='b'>USERNAME</Text>
                             <Text>USER EMAIL</Text>
                             <Text>FRIENDS</Text>
                             <Text>UPDATE USER INFO</Text>
@@ -73,65 +83,52 @@ export const SideBar = () => {
                         </Stack>
                     </TabPanel>
                     <TabPanel w='100%' h='100%'>
-                        <Stack direction='column' spacing='24px'>
-                            <Text fontSize='md' as='b'>GENRES</Text>
-                            <Button leftIcon={<FaBomb/>}>Action</Button>
-                            <Button leftIcon={<FaChessKing/>}>Strategy</Button>
-                            <Button leftIcon={<FaShieldAlt/>}>RPG</Button>
-                            <Button leftIcon={<FaBullseye/>}>Shooter</Button>
-                            <Button leftIcon={<FaMagic/>}>Adventure</Button>
-                            <Button leftIcon={<FaPuzzlePiece/>}>Puzzle</Button>
-                            <Button leftIcon={<FaCar/>}>Racing</Button>
-                            <Button leftIcon={<FaFootballBall/>}>Sports</Button>
+                        <Stack direction='column' spacing='2' w='100%' h='100%'>
+                            <Text fontSize='md' align='center' as='b'>GENRES</Text>
+                            {genresList}
                         </Stack>
                     </TabPanel>
                     <TabPanel>
                         <Stack direction='column' spacing='24px'>
-                            <Text fontSize='md' as='b'>STORES</Text>
-                            <Button>STEAM</Button>
-                            <Button>EPIC</Button>
-                            <Button>GOG</Button>
-                            <Button>GMG</Button>
+                            <Text fontSize='md' align='center' as='b'>STORES</Text>
+                            <Button onClick={() => {}}>STEAM</Button>
+                            <Button onClick={event => {}}>EPIC</Button>
+                            <Button onClick={event => {}}>GOG</Button>
+                            <Button onClick={event => {}}>GMG</Button>
                         </Stack>
                     </TabPanel>
                     <TabPanel>
                         <Stack direction='column' spacing='24px'>
-                            <Text fontSize='md' as='b'>TAGS</Text>
-                            <Button>Favorite Tag</Button>
-                            <Button>Choose Favorite Tags</Button>
-                            <Button>All Tags</Button>
+                            <Text fontSize='md' align='center' as='b'>TAGS</Text>
+                            <Button onClick={event => {}} value='favorite-tags'>Favorite Tag</Button>
+                            <Button onClick={event => {}} value='tags'>All Tags</Button>
+                        </Stack>
+                    </TabPanel>
+                    <TabPanel>
+                        <Stack direction='column' spacing='2' w='100%' h='100%'>
+                            <Text fontSize='md' align='center' as='b'>PLATFORMS</Text>
+                            {platformsList}
                         </Stack>
                     </TabPanel>
                     <TabPanel>
                         <Stack direction='column' spacing='24px'>
-                            <Text fontSize='md' as='b'>PLATFORMS</Text>
-                            <Button>PC</Button>
-                            <Button>Microsoft</Button>
-                            <Button>Playstation</Button>
-                            <Button>Nintendo</Button>
-                            <Button>iOS</Button>
-                            <Button>Android</Button>
+                            <Text fontSize='md' align='center' as='b'>CREATORS</Text>
+                            <Button onClick={event => {}} value='creators'>Your Favorite Creators</Button>
+                            <Button onClick={event => {}} value='favorite-creators'>View list</Button>
                         </Stack>
                     </TabPanel>
                     <TabPanel>
                         <Stack direction='column' spacing='24px'>
-                            <Text fontSize='md' as='b'>CREATORS</Text>
-                            <Button>Your Favorite Creators</Button>
-                            <Button>View list</Button>
+                            <Text fontSize='md' align='center' as='b'>DEVELOPERS</Text>
+                            <Button onClick={event => {}} value='developers'>Your Favorite Creators</Button>
+                            <Button onClick={event => {}} value='favorite-developers'>View list</Button>
                         </Stack>
                     </TabPanel>
                     <TabPanel>
                         <Stack direction='column' spacing='24px'>
-                            <Text fontSize='md' as='b'>DEVELOPERS</Text>
-                            <Button>Your Favorite Creators</Button>
-                            <Button>View list</Button>
-                        </Stack>
-                    </TabPanel>
-                    <TabPanel>
-                        <Stack direction='column' spacing='24px'>
-                            <Text fontSize='lg' as='b'>PUBLISHER</Text>
-                            <Button>Your Favorite Creators</Button>
-                            <Button>View list</Button>
+                            <Text fontSize='md' align='center' as='b'>PUBLISHER</Text>
+                            <Button onClick={event => {}} value='publishers'>Your Favorite Creators</Button>
+                            <Button onClick={event => {}} value='favorite-publishers'>View list</Button>
                         </Stack>
                     </TabPanel>
                 </TabPanels>

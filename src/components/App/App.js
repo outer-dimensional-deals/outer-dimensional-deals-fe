@@ -1,16 +1,18 @@
-import { ChakraProvider, Flex, Box, Hide, Show, Text, useDisclosure } from '@chakra-ui/react';
 import React, {useState, useEffect} from 'react';
+import './App.css';
+import { ChakraProvider, Flex, Box, Hide, Show, Text, useDisclosure } from '@chakra-ui/react';
 import { useKey } from '../../hooks/useKey';
+
+// --APICALL--
+import { searchRawgApiByParams, listOfStores } from '../../utils/apiCalls';
 
 // --- COMPONENTS ---
 import { NavBar } from '../NavBar/NavBar';
 import { GameCardContainer } from '../GameCardContainer/GameCardContainer';
 import { Search } from '../Search/Search'
 import { SideBar } from '../SideBar/SideBar';
-import './App.css';
 
 //AND FUNCTION
-
 const and = (a, b) => a && b
 
 export const App = () => {
@@ -34,6 +36,36 @@ export const App = () => {
 
   }, [shift, escape])
 
+  const [data, setData] = useState([])
+
+  // SEARCH FUNCTIONALITY 
+  // -- SIDEBAR --
+  const filterGamesByParameter = (parameter) => {
+
+    console.log(parameter)
+    searchRawgApiByParams(parameter)
+    .then(results => {
+      console.log(results)
+    })
+    .catch(error => {
+      console.log(error)
+    })
+
+  }
+
+
+  // --CHEAPSHARK--
+  const storesApiCall = () => {
+    listOfStores()
+      .then(results => {
+        console.log(results)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }
+
+
   return (
     <ChakraProvider>
       <Flex flexDirection='column' background='blue.200'>
@@ -45,8 +77,8 @@ export const App = () => {
         <Box h='100vh' w='100vw'>
           <Hide below='767px'>
             <Flex>
-              <SideBar/>
-              <GameCardContainer />
+              <SideBar filterGamesByParameter={filterGamesByParameter} storesApiCall={storesApiCall}/>
+              <GameCardContainer data={data}/>
             </Flex>
           </Hide>
           <Show below='767px'>
