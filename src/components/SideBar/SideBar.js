@@ -51,25 +51,25 @@ const cheapsharkStoresList = cheapshark.map(store => {
                         <Image borderRadius='full' boxSize='10' src='https://bit.ly/dan-abramov' alt='Dan Abramov'/>
                     </Tab>
                     <Tab>
-                        <Icon h='8' w='8' rounded='md' as={FaTheaterMasks} backgroundColor='gray.200' boxShadow='base'/>
+                        <Icon boxSize='10' rounded='md' as={FaTheaterMasks} backgroundColor='gray.200' boxShadow='base'/>
                      </Tab>
                     <Tab>
-                        <Icon h='8' w='8' rounded='md' as={MdLocalGroceryStore} backgroundColor='gray.200' boxShadow='base'/>
+                        <Icon boxSize='10' rounded='md' as={MdLocalGroceryStore} backgroundColor='gray.200' boxShadow='base'/>
                     </Tab>
                     <Tab>
-                        <Icon h='8' w='8' rounded='md' as={FaHashtag} backgroundColor='gray.200' boxShadow='base'/>
+                        <Icon boxSize='10' rounded='md' as={FaHashtag} backgroundColor='gray.200' boxShadow='base'/>
                     </Tab>
                     <Tab>
-                        <Icon h='8' w='8' rounded='md' as={IoGameController} backgroundColor='gray.200' boxShadow='base'/>
+                        <Icon boxSize='10' rounded='md' as={IoGameController} backgroundColor='gray.200' boxShadow='base'/>
                     </Tab>
                     <Tab>
-                        <Icon h='8' w='8' rounded='md' as={IoPersonSharp} backgroundColor='gray.200' boxShadow='base'/>
+                        <Icon boxSize='10' rounded='md' as={IoPersonSharp} backgroundColor='gray.200' boxShadow='base'/>
                     </Tab>
                     <Tab>
-                        <Icon h='8' w='8' rounded='md' as={FaCode} backgroundColor='gray.200' boxShadow='base'/>
+                        <Icon boxSize='10' rounded='md' as={FaCode} backgroundColor='gray.200' boxShadow='base'/>
                     </Tab>
                     <Tab>
-                        <Icon h='8' w='8' rounded='md' as={FaPaperPlane} backgroundColor='gray.200' boxShadow='base'/>
+                        <Icon boxSize='10' rounded='md' as={FaPaperPlane} backgroundColor='gray.200' boxShadow='base'/>
                     </Tab>
                 </TabList>
                 <TabPanels>
