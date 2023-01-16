@@ -20,13 +20,23 @@
     //++TRAILERS++
     //++STORES++
 
-export async function searchRawgApiByParams() {
-    const response = await fetch(`https://rawg.io/api/${parameter}?token&key=${process.env.REACT_APP_APIKEY}`)
-    if (!response.ok) {
+export async function searchRawgApiByParams(parameter) {
+    const response = await fetch(`https://rawg.io/api/${parameter}&token&key=${hidden}`)
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`)
+        }
         const data = await response.json()
         return data
-    }
-}
+};
+
+export async function listOfStores() {
+    const response = await fetch('https://www.cheapshark.com/api/1.0/stores')
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`)
+        }
+        const data = await response.json()
+        return data
+};
 
 
 // --- CHEAPSHARK ---

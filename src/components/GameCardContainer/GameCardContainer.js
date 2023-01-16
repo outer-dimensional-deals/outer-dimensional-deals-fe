@@ -2,8 +2,9 @@ import React from 'react';
 import { Box, Text, Flex, Heading } from '@chakra-ui/react'
 import './GameCardContainer.css';
 
-export const GameCardContainer = () => {
+export const GameCardContainer = ({data}) => {
 
+  console.log("GAME CONTAINER", data)
     return (
       <Box w='100vw' h='100vh' background='blue.200'>
         <Flex flexDirection='column' alignItems='center' justifyContent='space-around' w='100%' h='100%'>
