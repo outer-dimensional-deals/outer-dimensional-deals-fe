@@ -39,13 +39,13 @@ export const App = () => {
 
   const filterGamesByParameter = (parameter) => {
     console.log(parameter)
-    // searchRawgApiByParams(parameter)
-    // .then(results => {
-    //   console.log(results)
-    // })
-    // .catch(error => {
-    //   console.log(error)
-    // })
+    searchRawgApiByParams(parameter)
+    .then(results => {
+      console.log(results)
+    })
+    .catch(error => {
+      console.log(error)
+    })
   }
 
   const handleChange = (event) => {
@@ -75,9 +75,6 @@ export const App = () => {
   return (
     <ChakraProvider>
       <Flex flexDirection='column' background='blue.200'>
-        <Box>
-          <Text>Banner</Text>
-        </Box>
         <NavBar onOpen={onOpen} />
         <Search isOpen={isOpen} onClose={onClose} handleChange={handleChange} handleSubmit={handleSubmit}/>
         <Box h='100vh' w='100vw'>

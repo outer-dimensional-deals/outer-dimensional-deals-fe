@@ -1,25 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import './SideBar.css';
 import { Box, Text, Flex, Button, IconButton, Icon, Stack, Image, useDisclosure, Tabs, Tab, TabList, TabPanels, TabPanel, ButtonGroup} from '@chakra-ui/react';
-// --- CHAKRA ICONS ---
-import { ArrowRightIcon, ArrowLeftIcon } from '@chakra-ui/icons';
-// --- REACT ICONS ---
-import { IoGameController, IoPersonSharp } from 'react-icons/io5';
-import { MdLocalGroceryStore } from 'react-icons/md'
-import { 
-    FaHashtag, 
-    FaCode, 
-    FaPaperPlane, 
-    FaTheaterMasks,  
-} from 'react-icons/fa';
+import { FaHouseUser, FaHeart, FaUserAstronaut } from 'react-icons/fa';
+import { MdCategory } from 'react-icons/md';
 // --DUMBY DATA--
 import { genres } from '../../dumby-data/genresData';
 import { cheapshark } from '../../dumby-data/cheapSharkStoresData';
 import { parentPlatforms } from '../../dumby-data/parentPlatformsData';
 
 export const SideBar = ({storesApiCall, filterGamesByParameter}) => {
-
-    const { isOpen, onOpen, onClose,  onToggle} = useDisclosure();
 
 //--GENRES BUTTON GROUP--
 const genresList = genres.map(genre => {
@@ -42,99 +31,50 @@ const cheapsharkStoresList = cheapshark.map(store => {
 
 
     return (
-        <>
-        {!isOpen &&  
-        <Box w='28em' h='100vh' background='green.100' className='SideBar'>
-               <Tabs isFitted w='100%' h='100%' orientation='vertical' variant='enclosed'>
-                 <TabList aria-orientation='vertical'>
-                    <Tab>
-                        <Image borderRadius='full' boxSize='10' src='https://bit.ly/dan-abramov' alt='Dan Abramov'/>
-                    </Tab>
-                    <Tab>
-                        <Icon boxSize='10' rounded='md' as={FaTheaterMasks} backgroundColor='gray.200' boxShadow='base'/>
-                     </Tab>
-                    <Tab>
-                        <Icon boxSize='10' rounded='md' as={MdLocalGroceryStore} backgroundColor='gray.200' boxShadow='base'/>
-                    </Tab>
-                    <Tab>
-                        <Icon boxSize='10' rounded='md' as={FaHashtag} backgroundColor='gray.200' boxShadow='base'/>
-                    </Tab>
-                    <Tab>
-                        <Icon boxSize='10' rounded='md' as={IoGameController} backgroundColor='gray.200' boxShadow='base'/>
-                    </Tab>
-                    <Tab>
-                        <Icon boxSize='10' rounded='md' as={IoPersonSharp} backgroundColor='gray.200' boxShadow='base'/>
-                    </Tab>
-                    <Tab>
-                        <Icon boxSize='10' rounded='md' as={FaCode} backgroundColor='gray.200' boxShadow='base'/>
-                    </Tab>
-                    <Tab>
-                        <Icon boxSize='10' rounded='md' as={FaPaperPlane} backgroundColor='gray.200' boxShadow='base'/>
-                    </Tab>
-                </TabList>
-                <TabPanels>
-                    <TabPanel>
-                        <Stack direction='column' spacing='24px'>
-                            <Text fontSize='md' align='center' as='b'>USERNAME</Text>
-                            <Text>USER EMAIL</Text>
-                            <Text>FRIENDS</Text>
-                            <Text>UPDATE USER INFO</Text>
-                            <Text>USER FAVORITES</Text>
-                        </Stack>
-                    </TabPanel>
-                    <TabPanel w='100%' h='100%'>
-                        <Stack direction='column' spacing='2' w='100%' h='100%'>
-                            <Text fontSize='md' align='center' as='b'>GENRES</Text>
-                            {genresList}
-                        </Stack>
-                    </TabPanel>
-                    <TabPanel>
-                        <Stack direction='column' spacing='24px'>
-                            <Text fontSize='md' align='center' as='b'>WISHLIST</Text>
-                            <Button>TOP DEALS</Button>
-                            <Button onClick={() => {}}>YOUR WISHLIST</Button>
-                        </Stack>
-                    </TabPanel>
-                    <TabPanel>
-                        <Stack direction='column' spacing='24px'>
-                            <Text fontSize='md' align='center' as='b'>TAGS</Text>
-                            <Button onClick={event => {}} value='favorite-tags'>Favorite Tag</Button>
-                            <Button onClick={event => {}} value='tags'>All Tags</Button>
-                        </Stack>
-                    </TabPanel>
-                    <TabPanel>
-                        <Stack direction='column' spacing='2' w='100%' h='100%'>
-                            <Text fontSize='md' align='center' as='b'>PLATFORMS</Text>
-                            {platformsList}
-                        </Stack>
-                    </TabPanel>
-                    <TabPanel>
-                        <Stack direction='column' spacing='24px'>
-                            <Text fontSize='md' align='center' as='b'>CREATORS</Text>
-                            <Button onClick={event => {}} value='creators'>Your Favorite Creators</Button>
-                            <Button onClick={event => {}} value='favorite-creators'>View list</Button>
-                        </Stack>
-                    </TabPanel>
-                    <TabPanel>
-                        <Stack direction='column' spacing='24px'>
-                            <Text fontSize='md' align='center' as='b'>DEVELOPERS</Text>
-                            <Button onClick={event => {}} value='developers'>Your Favorite Creators</Button>
-                            <Button onClick={event => {}} value='favorite-developers'>View list</Button>
-                        </Stack>
-                    </TabPanel>
-                    <TabPanel>
-                        <Stack direction='column' spacing='24px'>
-                            <Text fontSize='md' align='center' as='b'>PUBLISHER</Text>
-                            <Button onClick={event => {}} value='publishers'>Your Favorite Creators</Button>
-                            <Button onClick={event => {}} value='favorite-publishers'>View list</Button>
-                        </Stack>
-                    </TabPanel>
-                </TabPanels>
-            </Tabs>
-        </Box>}
-        <Flex justifyContent='center' alignItems='center' h='100vh'>
-            {!isOpen && <IconButton icon={<ArrowLeftIcon/>} onClick={onOpen}/>}
-            {isOpen && <IconButton icon={<ArrowRightIcon/>} onClick={onClose}/>}
+        <> 
+        <Flex h='100vh' w='28em' bg='gray.900' className='SideBar' flexDirection='column' alignItems='center' boxShadow='dark-lg'>
+            <Box h='11em' w='18em'  mt='10' bg='gray.700' rounded='md' p='3px' mr='5' ml='5' mb='10%'>
+                <Flex h='100%' w='100%' bg='white' bgGradient='linear(to-t,gray.800,gray.700,gray.700,gray.600)' alignItems='center' justifyContent='center' boxShadow='dark-lg' rounded='md'  borderWidth='thin' borderColor='black'>
+                    <Box h='9em' w='16em' background='gray.600' boxShadow='dark-lg' borderStyle='groove' borderLeftWidth='thin' borderTopWidth='thin' rounded='md'></Box>
+                </Flex>
+            </Box>
+            <Flex h='20vh' w='100%' alignItems='center' justifyContent='space-around'>
+                <Box w='6em' h='6em' bgGradient='linear(to-t,gray.600,gray.700,gray.800)' borderRadius='100%' pb='2px' pr='2px' pl='2px' pt='2px' ml='10px' boxShadow='inner'>
+                    <Flex w='100%' h='100%' bg='gray.400' flexDirection='column' alignItems='center' justifyContent='center' borderRadius='100%' boxShadow='inner'>
+                        <Box bg='gray.600' h='25%' w='25%' borderTopRadius='sm' borderTopWidth='thin' borderRightWidth='thin'></Box>
+                        <Flex h='25%' w='75%'>
+                            <Box bg='gray.800' h='99%' w='100%' rounded='sm'>
+                                <Box bg='gray.600' h='86%' w='100%' borderTopLeftRadius='sm' borderLeftRadius='sm' borderTopWidth='thin'></Box>
+                            </Box>
+                            <Box bg='gray.600' h='100%' w='100%'></Box>
+                            <Box bg='gray.800' h='100%' w='100%' rounded='sm'>
+                                <Box bg='gray.600' h='86%' w='96%' borderTopRightRadius='sm' borderRightRadius='sm' borderTopWidth='thin' borderRightWidth='thin'></Box>
+                            </Box>
+                        </Flex>
+                        <Box bg='gray.800' h='25%' w='25%' rounded='md'>
+                            <Box bg='gray.600' h='86%' w='96%' borderBottomRadius='md' borderRightWidth='thin'></Box>
+                        </Box>
+                    </Flex>
+                </Box>
+                    <Flex h='8.5em' w='8.5em' justifyContent='space-evenly' alignItems='center' bg='gray.600' borderRadius='100%' flexDir='column' borderWidth='thin' borderColor='gray.700'>
+                        <Flex bg='gray.400' rounded='full' h='25%' w='80%' justifyContent='space-between' align='center' borderWidth='thin' borderColor='gray.300'>
+                            <Box h='2em' w='2em' ml='6px' bg='green.800' borderRadius='100%' pb='4px' pr='1px' pl='1px' >
+                                <Box h='100%' w='100%' bg='green.500' borderRadius='100%' boxShadow='dark-lg' borderTopWidth='thin' align='center' p='1'><FaHouseUser/></Box>
+                            </Box>
+                            <Box h='2em' w='2em' mr='6px' bg='blue.800' borderRadius='100%' pb='4px' pr='1px' pl='1px' >
+                                <Box h='100%' w='100%' bg='blue.500' borderRadius='100%' boxShadow='dark-lg' borderTopWidth='thin' align='center' p='1'><MdCategory/></Box>
+                            </Box>    
+                        </Flex>
+                        <Flex bg='gray.400' rounded='full' h='25%' w='80%' justifyContent='space-between' align='center' borderWidth='thin' borderColor='gray.300'>
+                            <Box h='2em' w='2em' ml='6px' bg='yellow.800' borderRadius='100%' pb='4px' pr='1px' pl='1px' >
+                                <Box h='100%' w='100%' bg='yellow.500' borderRadius='100%' boxShadow='dark-lg' borderTopWidth='thin' align='center' p='1'><FaHeart/></Box>
+                            </Box>
+                            <Box h='2em' w='2em' mr='6px' bg='red.800' borderRadius='100%' pb='4px' pr='1px' pl='1px' >
+                                <Box h='100%' w='100%' bg='red.500' borderRadius='100%' boxShadow='dark-lg' borderTopWidth='thin' align='center' p='1'><FaUserAstronaut /></Box>
+                            </Box> 
+                        </Flex>
+                    </Flex>
+            </Flex>
         </Flex>
         </>
     )

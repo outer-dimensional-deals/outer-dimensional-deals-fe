@@ -1,6 +1,7 @@
 import React from 'react';
-import { Box, Text, Flex, Heading } from '@chakra-ui/react'
 import './GameCardContainer.css';
+import { Box, Text, Flex, Heading } from '@chakra-ui/react'
+import { ImageSlider } from '../ImageSlider/ImageSlider'
 
 export const GameCardContainer = ({data}) => {
 
@@ -10,7 +11,7 @@ export const GameCardContainer = ({data}) => {
         <Flex flexDirection='column' alignItems='center' justifyContent='space-around' w='100%' h='100%'>
             <Box background='gray.300'>
                 <Heading>New & Trending</Heading>
-                <Text>VISUAL CONTENT</Text>
+                <ImageSlider />
             </Box>
             <Box background='gray.300'>
                 <Heading>Special Offers</Heading>
