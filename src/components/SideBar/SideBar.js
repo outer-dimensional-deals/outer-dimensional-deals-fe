@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './SideBar.css';
-import { Box, Text, Flex, Button, IconButton, Icon, Stack, Image, useDisclosure, Tabs, Tab, TabList, TabPanels, TabPanel, ButtonGroup} from '@chakra-ui/react';
+import { Box, Text, Flex, Button, Icon, Heading} from '@chakra-ui/react';
 import { FaHouseUser, FaHeart, FaUserAstronaut } from 'react-icons/fa';
 import { MdCategory } from 'react-icons/md';
+import { GiAstronautHelmet } from 'react-icons/gi'
+
 // --DUMBY DATA--
 import { genres } from '../../dumby-data/genresData';
 import { cheapshark } from '../../dumby-data/cheapSharkStoresData';
@@ -33,7 +35,11 @@ const cheapsharkStoresList = cheapshark.map(store => {
     return (
         <> 
         <Flex h='100vh' w='28em' bg='gray.900' className='SideBar' flexDirection='column' alignItems='center' boxShadow='dark-lg'>
-            <Box h='11em' w='18em'  mt='10' bg='gray.700' rounded='md' p='3px' mr='5' ml='5' mb='10%'>
+            <Flex mt='5'>
+                <Icon as={GiAstronautHelmet} w='6vh' h='6vh' mr='3'/>
+                <Heading>O.D.D</Heading>
+            </Flex>
+            <Box h='11em' w='18em'  mt='5' bg='gray.700' rounded='md' p='3px' mr='5' ml='5' mb='10%'>
                 <Flex h='100%' w='100%' bg='white' bgGradient='linear(to-t,gray.800,gray.700,gray.700,gray.600)' alignItems='center' justifyContent='center' boxShadow='dark-lg' rounded='md'  borderWidth='thin' borderColor='black'>
                     <Box h='9em' w='16em' background='gray.600' boxShadow='dark-lg' borderStyle='groove' borderLeftWidth='thin' borderTopWidth='thin' rounded='md'></Box>
                 </Flex>

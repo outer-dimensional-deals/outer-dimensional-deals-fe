@@ -6,10 +6,10 @@ import { useKey } from '../../hooks/useKey';
 import { searchRawgApiByParams, listOfStores } from '../../utils/apiCalls';
 // --- COMPONENTS ---
 import { NavBar } from '../NavBar/NavBar';
-import { GameCardContainer } from '../GameCardContainer/GameCardContainer';
 import { Search } from '../Search/Search'
 import { SideBar } from '../SideBar/SideBar';
-
+import { HomePage } from '../HomePage/HomePage';
+import { results } from '../../dumby-data/dumby-data';
 //AND FUNCTION
 const and = (a, b) => a && b
 
@@ -21,8 +21,9 @@ export const App = () => {
   //--CHAKRA-HOOKS--
   const { isOpen, onOpen, onClose } = useDisclosure();
   //--REACT-HOOKS--
-  const [ input, setInput ] = useState('')
-  const [data, setData] = useState([])
+  const [input, setInput] = useState('');
+  const [data, setData] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
 
@@ -35,6 +36,17 @@ export const App = () => {
       }
 
   }, [shift, escape])
+
+  useEffect(() => {
+
+    setData(results)
+    if (data) {
+      setTimeout(() => {
+        setIsLoaded(true)
+      }, 3000)
+    }
+
+  }, [])
 
 
   const filterGamesByParameter = (parameter) => {
@@ -74,21 +86,18 @@ export const App = () => {
 
   return (
     <ChakraProvider>
-      <Flex flexDirection='column' background='blue.200'>
-        <NavBar onOpen={onOpen} />
-        <Search isOpen={isOpen} onClose={onClose} handleChange={handleChange} handleSubmit={handleSubmit}/>
-        <Box h='100vh' w='100vw'>
-          <Hide below='767px'>
-            <Flex>
-              <SideBar filterGamesByParameter={filterGamesByParameter} storesApiCall={storesApiCall}/>
-              <GameCardContainer data={data}/>
-            </Flex>
-          </Hide>
-          <Show below='767px'>
-            <GameCardContainer />
+      <Box maxH='100vh' maxW='100vw' overflow='hidden'>
+        <Flex h='100%' w='100%'>
+          <Show above='769px'>
+            <SideBar filterGamesByParameter={filterGamesByParameter} storesApiCall={storesApiCall}/>
           </Show>
-        </Box>
-      </Flex>
+          <Flex flexDirection='column' h='100%' w='100%'>
+            <NavBar onOpen={onOpen} />
+            <Search isOpen={isOpen} onClose={onClose} handleChange={handleChange} handleSubmit={handleSubmit}/>
+            <HomePage data={data} isLoaded={isLoaded} />
+          </Flex>
+        </Flex>
+      </Box>
     </ChakraProvider>
   );
 }
