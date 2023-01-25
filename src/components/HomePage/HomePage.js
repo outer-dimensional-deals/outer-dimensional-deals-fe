@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import './HomePage.css';
-import { Box, Text, Flex, Heading, extendTheme} from '@chakra-ui/react'
+import { Box, Text, Flex, Heading, HStack, Button} from '@chakra-ui/react'
 import { ImageSlider } from '../ImageSlider/ImageSlider'
 //---COMPONENTS---
 import {GameCardContainer} from '../GameCardContainer/GameCardContainer';
@@ -18,10 +18,15 @@ export const HomePage = ({data, isLoaded}) => {
                 <Heading>New & Trending</Heading>
                 <ImageSlider />
             </Box>
-            <Box h='auto' w='100%' bg='green'>
-                <Text>Button option list</Text>
+            <Flex h='auto' w='auto' flexDirection='column' alignItems='center' mt={5} mb={20}>
+                <HStack w='100%' justifyContent='center' alignItems='center' mt={5} mb={10}>
+                  <Button>Recently Released</Button>
+                  <Button>Coming Soon</Button>
+                  <Button>Popular Upcoming</Button>
+                </HStack>
                 <GameCardContainer data={data} isLoaded={isLoaded}/>
-            </Box>
+                  <Button mt={5} mb={5}>Next Page</Button>
+            </Flex>
         </Flex>
       </Box>
     )

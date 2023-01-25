@@ -33,13 +33,7 @@ export const GameCardContainer = ({data, isLoaded}) => {
   console.log("GAME CONTAINER", data)
     return (
       <>
-        {/* <SimpleGrid columns={[1, 2, 3, 4]} spacing='10px' >
-            {mapData}
-        </SimpleGrid> */}
-        <Flex h='100%' w='100%' flexDirection='column' alignItems='center' mb={20}>
-            {mapData}
-        </Flex>
-        
+        {mapData}
       </>
     )
 }
