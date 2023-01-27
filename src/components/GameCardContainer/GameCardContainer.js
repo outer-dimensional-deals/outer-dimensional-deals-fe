@@ -1,22 +1,39 @@
 import React from 'react';
-import { Box, Text, Flex, Heading } from '@chakra-ui/react'
 import './GameCardContainer.css';
+import { Box, Text, Flex, Heading, SimpleGrid } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
+import {GameCard} from '../GameCard/GameCard';
 
-export const GameCardContainer = ({data}) => {
+
+export const GameCardContainer = ({data, isLoaded}) => {
+
+  const mapData = data.map(data => {
+    return (
+        <Link to={`/:${data.name}`} state={{data: data}} key={data.id}>
+            <GameCard
+                isLoaded={isLoaded}
+                id={data.id}
+                key={data.id} 
+                name={data.name} 
+                background={data.background_image} 
+                esbr={data.esrb_rating}  
+                genres={data.genres}
+                metacritic={data.metacritic}
+                platforms={data.parent_platforms}
+                ratings={data.ratings}
+                released={data.released}
+                screenshots={data.short_screenshots}
+                tags={data.tags}
+            />
+        </Link>
+    )
+})
+
 
   console.log("GAME CONTAINER", data)
     return (
-      <Box w='100vw' h='100vh' background='blue.200'>
-        <Flex flexDirection='column' alignItems='center' justifyContent='space-around' w='100%' h='100%'>
-            <Box background='gray.300'>
-                <Heading>New & Trending</Heading>
-                <Text>VISUAL CONTENT</Text>
-            </Box>
-            <Box background='gray.300'>
-                <Heading>Special Offers</Heading>
-                <Text>VISUAL CONTENT</Text>
-            </Box>
-        </Flex>
-      </Box>
+      <>
+        {mapData}
+      </>
     )
 }
