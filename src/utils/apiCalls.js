@@ -1,24 +1,4 @@
-// --- RAWG.IO ---
 
-//--GAME LIST & FILTERS--
-    //++TITLE(string)++
-    //++PAGE(int)++
-    //++PAGE_SIZE(int)++
-    //++SEARCH_PRECISE(boolean)++
-    //++SEARCH_EXACT(boolean)++
-    //++PARENT_PLATFORMS(string)++
-    //++STORES(string)++
-    //++DEVELOPERS(string)++
-    //++PUBLISHERS(string)++
-    //++GENRES(string)++
-    //++TAGS(string)++
-    //++CREATORS(string)++
-
-//--GAME DETAILS---
-    //++ID++
-    //++DLC++
-    //++TRAILERS++
-    //++STORES++
 
 export async function searchRawgApiByParams(parameter) {
     const response = await fetch(`https://rawg.io/api/${parameter}&token&key=6647bd5bf2e6433ea0c88ac36a77f01f`)
@@ -39,4 +19,3 @@ export async function listOfStores() {
 };
 
 
-// --- CHEAPSHARK ---

@@ -10,6 +10,8 @@ import { Search } from '../Search/Search'
 import { SideBar } from '../SideBar/SideBar';
 import { HomePage } from '../HomePage/HomePage';
 import { results } from '../../dumby-data/dumby-data';
+
+
 //AND FUNCTION
 const and = (a, b) => a && b
 

@@ -6,30 +6,8 @@ import { MdCategory } from 'react-icons/md';
 import { GiAstronautHelmet } from 'react-icons/gi'
 
 // --DUMBY DATA--
-import { genres } from '../../dumby-data/genresData';
-import { cheapshark } from '../../dumby-data/cheapSharkStoresData';
-import { parentPlatforms } from '../../dumby-data/parentPlatformsData';
 
 export const SideBar = ({storesApiCall, filterGamesByParameter}) => {
-
-//--GENRES BUTTON GROUP--
-const genresList = genres.map(genre => {
-    return ( 
-        <Button leftIcon={genre.icon} onClick={event => filterGamesByParameter(`games?genres=${event.target.value}`)} value={genre.id}>{genre.name}</Button>
-    )
-})
-//--PLATFORMS BUTTON GROUP--
-const platformsList = parentPlatforms.map(platform => {
-    return (
-        <Button leftIcon={platform.icon} onClick={event => filterGamesByParameter(`games?parent_platforms=${event.target.value}`)} value={platform.id}>{platform.name}</Button>
-    )
-})
-//--STORES BUTTON GROUP---
-const cheapsharkStoresList = cheapshark.map(store => {
-    return (
-        <Button leftIcon={store.images !== null ? store.images : ''}>{store.storeName}</Button>
-    )
-})
 
 
     return (
