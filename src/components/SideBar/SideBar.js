@@ -7,7 +7,7 @@ import { GiAstronautHelmet } from 'react-icons/gi'
 
 // --DUMBY DATA--
 
-export const SideBar = ({storesApiCall, filterGamesByParameter}) => {
+export const SideBar = () => {
 
 
     return (

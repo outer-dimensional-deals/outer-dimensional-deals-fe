@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import './App.css';
+import axios from 'axios';
 import { ChakraProvider, Flex, Box, Hide, Show, Text, useDisclosure } from '@chakra-ui/react';
 import { useKey } from '../../hooks/useKey';
 // --APICALL--
-import { searchRawgApiByParams, listOfStores } from '../../utils/apiCalls';
+import { searchIGDB } from '../../utils/apiCalls';
 // --- COMPONENTS ---
 import { NavBar } from '../NavBar/NavBar';
 import { Search } from '../Search/Search'
@@ -51,17 +52,6 @@ export const App = () => {
   }, [])
 
 
-  const filterGamesByParameter = (parameter) => {
-    console.log(parameter)
-    searchRawgApiByParams(parameter)
-    .then(results => {
-      console.log(results)
-    })
-    .catch(error => {
-      console.log(error)
-    })
-  }
-
   const handleChange = (event) => {
     setInput(event.target.value)
   }
@@ -70,20 +60,10 @@ export const App = () => {
     //Convert to slug
     let slug = "games?search=" + input.split(' ').join('-').toLowerCase() 
     //Search Title
-    filterGamesByParameter(slug)
     onClose()
   }
 
   // --CHEAPSHARK--
-  const storesApiCall = () => {
-    listOfStores()
-      .then(results => {
-        console.log(results)
-      })
-      .catch(error => {
-        console.log(error)
-      })
-  }
 
 
   return (
@@ -91,7 +71,7 @@ export const App = () => {
       <Box maxH='100vh' maxW='100vw' overflow='hidden'>
         <Flex h='100%' w='100%'>
           <Show above='769px'>
-            <SideBar filterGamesByParameter={filterGamesByParameter} storesApiCall={storesApiCall}/>
+            <SideBar />
           </Show>
           <Flex flexDirection='column' h='100%' w='100%'>
             <NavBar onOpen={onOpen} />

@@ -35,7 +35,7 @@ export const ImageSlider = () => {
 
     const displayImageIndex = images.map((image, imageIndex) => {
         return (
-            <Button key={image} h='30%' w='1%' rounded='lg' onClick={() => {goToSlide(imageIndex)}}></Button>
+            <Button key={imageIndex} h='30%' w='1%' rounded='lg' onClick={() => {goToSlide(imageIndex)}}></Button>
         )
     })
 
