@@ -12,11 +12,11 @@ export const HomePage = ({data, isLoaded}) => {
 
   console.log("GAME CONTAINER", data)
     return (
-      <Box h='100vh' w='auto' background='blue.200'>
+      <Box h='100vh' w='auto' >
         <Flex h='100%' w='auto' flexDirection='column' overflowX='scroll' bg='white' alignItems='center'>
-            <Box h='auto' w='100%' background='gray.300' flexDirection='column' alignItems='center'>
+            <Box h='auto' w='100%' flexDirection='column' alignItems='center'>
                 <Heading>New & Trending</Heading>
-                <ImageSlider />
+                <ImageSlider data={data}/>
             </Box>
             <Flex h='auto' w='100%' flexDirection='column' alignItems='center' mt={5} mb={20}>
               <GameCardContainer data={data} isLoaded={isLoaded}/>

@@ -6,14 +6,13 @@ import { gameTrailersID } from '../../dumby-data/trendingGameTrailers';
 import { searchRawgApiByParams } from '../../utils/apiCalls';
 
 
-export const ImageSlider = () => {
+export const ImageSlider = ({data}) => {
 
-    const images = [ 
-        {image: "PwxIR4Qx6Fo"}, 
-        {image: "NthGfn_ddRQ"},
-        {image: "TYPmRWZYUus"}
-    ];
 
+    const newArray = data.slice(0, 6)
+    const images = newArray.filter(element => element.videos).map(element => element.videos[0])
+    
+    
     const [currentIndex, setCurrentIndex] = useState(0)
   
 
@@ -44,7 +43,7 @@ export const ImageSlider = () => {
     return (
         <Flex h={[ '20em', '40em']} w='auto' flexDirection='column' alignItems='center' background='black'>
             <HStack h='90%' w='100%' justifyContent='center' alignItems='center'>
-                <iframe height={[ '80%']} width="80%" src={`https://www.youtube.com/embed/${images[currentIndex].image}`} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;" allowFullScreen />
+                <iframe height={[ '80%']} width="80%" src={`https://www.youtube.com/embed/${images[currentIndex].video_id}`} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;" allowFullScreen />
             </HStack>
             <HStack  h={['20%', '10%']} w='100%' bg='gray' justifyContent='center' alignItems='center'>
                 <IconButton onClick={() => goToPrevious()} icon={<ArrowLeftIcon/>}/>
