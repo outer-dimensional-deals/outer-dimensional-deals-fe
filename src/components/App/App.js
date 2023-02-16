@@ -4,7 +4,7 @@ import axios from 'axios';
 import { ChakraProvider, Flex, Box, Hide, Show, Text, useDisclosure } from '@chakra-ui/react';
 import { useKey } from '../../hooks/useKey';
 // --APICALL--
-import { searchIGDB } from '../../utils/apiCalls';
+import { findRecentlyReleasedGames } from '../../utils/apiCalls';
 // --- COMPONENTS ---
 import { NavBar } from '../NavBar/NavBar';
 import { Search } from '../Search/Search'
@@ -42,12 +42,16 @@ export const App = () => {
 
   useEffect(() => {
 
-    setData(results)
-    if (data) {
-      setTimeout(() => {
-        setIsLoaded(true)
-      }, 3000)
-    }
+
+    findRecentlyReleasedGames()
+      .then(results => {
+       setData(results)
+       setIsLoaded(true)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+      
 
   }, [])
 
