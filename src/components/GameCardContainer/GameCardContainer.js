@@ -27,7 +27,7 @@ export const GameCardContainer = ({data, isLoaded}) => {
 })
 
 
-  console.log("GAME CONTAINER", data)
+
     return (
       <>
         {mapData}

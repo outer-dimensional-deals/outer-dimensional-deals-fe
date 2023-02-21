@@ -7,7 +7,7 @@ import { GiAstronautHelmet } from 'react-icons/gi'
 
 // --DUMBY DATA--
 
-export const SideBar = () => {
+export const SideBar = ({handleAnticipated, handleNewAndTrending}) => {
 
 
     return (
@@ -42,22 +42,27 @@ export const SideBar = () => {
                 </Box>
                     <Flex h='8.5em' w='8.5em' justifyContent='space-evenly' alignItems='center' bg='gray.600' borderRadius='100%' flexDir='column' borderWidth='thin' borderColor='gray.700'>
                         <Flex bg='gray.400' rounded='full' h='25%' w='80%' justifyContent='space-between' align='center' borderWidth='thin' borderColor='gray.300'>
-                            <Box h='2em' w='2em' ml='6px' bg='green.800' borderRadius='100%' pb='4px' pr='1px' pl='1px' >
-                                <Box h='100%' w='100%' bg='green.500' borderRadius='100%' boxShadow='dark-lg' borderTopWidth='thin' align='center' p='1'><FaHouseUser/></Box>
+                            <Box h='2em' w='2em' ml='6px' bg='green.800' borderRadius='100%' pb='4px' pr='1px' pl='1px' className='pushable'>
+                                <Box h='100%' w='100%' bg='green.500' borderRadius='100%' boxShadow='dark-lg' borderTopWidth='thin' align='center' p='1' className='focus'><FaHouseUser/></Box>
                             </Box>
-                            <Box h='2em' w='2em' mr='6px' bg='blue.800' borderRadius='100%' pb='4px' pr='1px' pl='1px' >
-                                <Box h='100%' w='100%' bg='blue.500' borderRadius='100%' boxShadow='dark-lg' borderTopWidth='thin' align='center' p='1'><MdCategory/></Box>
+                            <Box h='2em' w='2em' mr='6px' bg='blue.800' borderRadius='100%' pb='4px' pr='1px' pl='1px' className='pushable'>
+                                <Box h='100%' w='100%' bg='blue.500' borderRadius='100%' boxShadow='dark-lg' borderTopWidth='thin' align='center' p='1' className='focus'><MdCategory/></Box>
                             </Box>    
                         </Flex>
                         <Flex bg='gray.400' rounded='full' h='25%' w='80%' justifyContent='space-between' align='center' borderWidth='thin' borderColor='gray.300'>
-                            <Box h='2em' w='2em' ml='6px' bg='yellow.800' borderRadius='100%' pb='4px' pr='1px' pl='1px' >
-                                <Box h='100%' w='100%' bg='yellow.500' borderRadius='100%' boxShadow='dark-lg' borderTopWidth='thin' align='center' p='1'><FaHeart/></Box>
+                            <Box h='2em' w='2em' ml='6px' bg='yellow.800' borderRadius='100%' pb='4px' pr='1px' pl='1px' className='pushable'>
+                                <Box h='100%' w='100%' bg='yellow.500' borderRadius='100%' boxShadow='dark-lg' borderTopWidth='thin' align='center' p='1' className='focus'><FaHeart/></Box>
                             </Box>
-                            <Box h='2em' w='2em' mr='6px' bg='red.800' borderRadius='100%' pb='4px' pr='1px' pl='1px' >
-                                <Box h='100%' w='100%' bg='red.500' borderRadius='100%' boxShadow='dark-lg' borderTopWidth='thin' align='center' p='1'><FaUserAstronaut /></Box>
+                            <Box h='2em' w='2em' mr='6px' bg='red.800' borderRadius='100%' pb='4px' pr='1px' pl='1px' className='pushable'>
+                                <Box h='100%' w='100%' bg='red.500' borderRadius='100%' boxShadow='dark-lg' borderTopWidth='thin' align='center' p='1' className='focus'><FaUserAstronaut /></Box>
                             </Box> 
                         </Flex>
                     </Flex>
+            </Flex>
+            <Flex h='auto' w='auto' flexDirection='column' justifyContent='center' alignItems='center' mt='10' bg='gray.600' rounded='base' >
+                <Text>Home</Text>
+                <Button bg='none' onClick={() => handleNewAndTrending()}>New & Trending</Button>
+                <Button bg='none' onClick={() => handleAnticipated()}>Anticipated</Button>
             </Flex>
         </Flex>
         </>

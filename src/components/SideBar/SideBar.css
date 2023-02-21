@@ -1,0 +1,11 @@
+.pushable {
+    cursor: pointer;
+}
+
+.focus {
+    transform: translateY(-1.5px);
+}
+
+.pushable:active .focus {
+    transform: translateY(1px);
+  }
