@@ -55,24 +55,20 @@ const displayRelease = released.map(release => {
 
 
     return (
-        <Box w={['15em', '30em', '28em', '35em', '60em']} h={['24em', '10em']} borderWidth='1px' rounded='md' boxShadow='dark-lg' _hover={{ boxShadow: 'outline'}} m={1} bg='white'>
-            <Flex h='100%' w='100%' flexDirection={['column', 'row']}>
+        <Box w={['10em']} h={['auto']} borderWidth='1px' rounded='md' boxShadow='dark-lg' position='relative' transition='500ms' _hover={{ boxShadow: 'outline', transform: 'scale(1.5)', zIndex: '1'}} m={1} bg='white'>
+            <Flex h='100%' w='100%' flexDirection={['column']}>
                 <Skeleton isLoaded={isLoaded}>
                     <Image boxSize={'100%'} ratio={3 / 4} objectFit='cover' src={background.replace('t_thumb', 't_cover_big')} alt={name} rounded='md'/>
                 </Skeleton>
-                <Flex p='3' flexDirection='column' justifyContent='space-between' w='90%'>
-                    <HStack justifyContent='space-between'>
-                        <Text fontSize='md'>{name}</Text>
-                        <Text>{displayRelease[0]}</Text>
-                    </HStack>
+                {/* <Flex p='3' flexDirection='column' justifyContent='space-between' w='90%'>
+                    <Text fontSize='md'>{name}</Text>
                     <HStack>
                         {displayGenre}
                     </HStack>
                     <HStack>
                         {mapIcons}
                     </HStack>
-                    <Text>Ratings: {Math.floor(ratings)}%</Text>
-                </Flex>
+                </Flex> */}
             </Flex>
         </Box>
     )

@@ -30,7 +30,9 @@ export const GameCardContainer = ({data, isLoaded}) => {
 
     return (
       <>
-        {mapData}
+          <SimpleGrid columns={[1, 2, 3, 4]} spacing='40px' p={[0, 10]}>
+            {mapData}
+          </SimpleGrid>
       </>
     )
 }

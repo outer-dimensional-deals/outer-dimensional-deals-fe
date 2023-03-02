@@ -1,3 +1,14 @@
+@import url('https://fonts.cdnfonts.com/css/8bit-wonder');
+
+
+.Home {
+    font-family: '8BIT WONDER';
+}
+
+.Quick-Link {
+    font-family: '8BIT WONDER';
+}
+
 .pushable {
     cursor: pointer;
 }
