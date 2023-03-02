@@ -15,25 +15,24 @@ export const GameCardContainer = ({data, isLoaded}) => {
                 id={data.id}
                 key={data.id} 
                 name={data.name} 
-                background={data.background_image} 
-                esbr={data.esrb_rating}  
+                background={data.cover.url} 
                 genres={data.genres}
-                metacritic={data.metacritic}
-                platforms={data.parent_platforms}
-                ratings={data.ratings}
-                released={data.released}
-                screenshots={data.short_screenshots}
-                tags={data.tags}
+                platforms={data.platforms}
+                ratings={data.aggregated_rating}
+                released={data.release_dates}
+                screenshots={data.screenshots}
             />
         </Link>
     )
 })
 
 
-  console.log("GAME CONTAINER", data)
+
     return (
       <>
-        {mapData}
+          <SimpleGrid columns={[1, 2, 3, 4]} spacing='40px' p={[0, 10]}>
+            {mapData}
+          </SimpleGrid>
       </>
     )
 }

@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './GameCard.css';
-import { Box, Image, HStack, Text, Divider, Skeleton, Flex, extendTheme} from '@chakra-ui/react';
+import { Box, Image, Text, Skeleton, Flex, AspectRatio, extendTheme, HStack, Tag, Icon} from '@chakra-ui/react';
+
+import { assets } from '../../assets/assets';
 
 const breakpoints = {
     sm: '320px',
@@ -12,20 +14,61 @@ const breakpoints = {
 
   const theme = extendTheme({ breakpoints })
 
-export const GameCard = ({isLoaded, id, name, background, esrb, genres, metacritic, platforms, ratings, released, screenshots, tags}) => {
+export const GameCard = ({isLoaded, id, name, background, genres, platforms, ratings, released}) => {
+const [logo, setLogo] = useState([])
+const [genreName, setGenreName] = useState([])
+
+useEffect(() => {
+
+    if (genres) {
+        setGenreName(genres)
+    }
+    if (platforms) {
+        setLogo(platforms)
+    }
+
+}, [])
+
+const mapPlats = logo.map(platform => platform.name)
+
+const filterIcons = assets.filter(asset => mapPlats.includes(asset.name))
+
+
+const mapIcons = filterIcons.map(icon => {
+    return (
+        <Icon as={icon.img} key={icon.name}/>
+    )
+})
+
+const displayGenre = genreName.map(genre => {
 
     return (
-        <Box w={['15em', '30em', '28em', '35em', '60em']} h={['24em', '10em']} borderWidth='1px' rounded='md' boxShadow='dark-lg' _hover={{ boxShadow: 'outline'}} m={1} bg='white'>
-            <Flex h='100%' w='100%' flexDirection={['column', 'row']}>
+        <Tag fontSize={7} key={genre.id} variant='solid' colorScheme='teal'>{genre.name}</Tag>
+    )
+})
+
+const displayRelease = released.map(release => {
+    return (
+        release.human
+    )
+})
+
+
+    return (
+        <Box w={['10em']} h={['auto']} borderWidth='1px' rounded='md' boxShadow='dark-lg' position='relative' transition='500ms' _hover={{ boxShadow: 'outline', transform: 'scale(1.5)', zIndex: '1'}} m={1} bg='white'>
+            <Flex h='100%' w='100%' flexDirection={['column']}>
                 <Skeleton isLoaded={isLoaded}>
-                    <Image boxSize={['15em', '9.9em']} objectFit='cover' src={background} alt={name} rounded='md'/>
+                    <Image boxSize={'100%'} ratio={3 / 4} objectFit='cover' src={background.replace('t_thumb', 't_cover_big')} alt={name} rounded='md'/>
                 </Skeleton>
-                <Box p='3'>
+                {/* <Flex p='3' flexDirection='column' justifyContent='space-between' w='90%'>
                     <Text fontSize='md'>{name}</Text>
-                    <Text>Tags</Text>
-                    <Text>Platforms</Text>
-                    <Text>User Review</Text>
-                </Box>
+                    <HStack>
+                        {displayGenre}
+                    </HStack>
+                    <HStack>
+                        {mapIcons}
+                    </HStack>
+                </Flex> */}
             </Flex>
         </Box>
     )

@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import './SideBar.css';
 import { Box, Text, Flex, Button, Icon, Heading} from '@chakra-ui/react';
+import {Link} from 'react-router-dom'
 import { FaHouseUser, FaHeart, FaUserAstronaut } from 'react-icons/fa';
 import { MdCategory } from 'react-icons/md';
 import { GiAstronautHelmet } from 'react-icons/gi'
 
 // --DUMBY DATA--
 
-export const SideBar = () => {
+export const SideBar = ({setNavigation, location}) => {
+
 
 
     return (
@@ -19,7 +21,9 @@ export const SideBar = () => {
             </Flex>
             <Box h='11em' w='18em'  mt='5' bg='gray.700' rounded='md' p='3px' mr='5' ml='5' mb='10%'>
                 <Flex h='100%' w='100%' bg='white' bgGradient='linear(to-t,gray.800,gray.700,gray.700,gray.600)' alignItems='center' justifyContent='center' boxShadow='dark-lg' rounded='md'  borderWidth='thin' borderColor='black'>
-                    <Box h='9em' w='16em' background='gray.600' boxShadow='dark-lg' borderStyle='groove' borderLeftWidth='thin' borderTopWidth='thin' rounded='md'></Box>
+                    <Flex className='Screen' h='9em' w='16em' background='gray.600' boxShadow='dark-lg' borderStyle='groove' borderLeftWidth='thin' borderTopWidth='thin' rounded='md' flexDirection='column' justifyContent='center' alignItems='center'>
+                    <Text className='Home'>{location.name}</Text>
+                    </Flex>
                 </Flex>
             </Box>
             <Flex h='20vh' w='100%' alignItems='center' justifyContent='space-around'>
@@ -42,20 +46,28 @@ export const SideBar = () => {
                 </Box>
                     <Flex h='8.5em' w='8.5em' justifyContent='space-evenly' alignItems='center' bg='gray.600' borderRadius='100%' flexDir='column' borderWidth='thin' borderColor='gray.700'>
                         <Flex bg='gray.400' rounded='full' h='25%' w='80%' justifyContent='space-between' align='center' borderWidth='thin' borderColor='gray.300'>
-                            <Box h='2em' w='2em' ml='6px' bg='green.800' borderRadius='100%' pb='4px' pr='1px' pl='1px' >
-                                <Box h='100%' w='100%' bg='green.500' borderRadius='100%' boxShadow='dark-lg' borderTopWidth='thin' align='center' p='1'><FaHouseUser/></Box>
-                            </Box>
-                            <Box h='2em' w='2em' mr='6px' bg='blue.800' borderRadius='100%' pb='4px' pr='1px' pl='1px' >
-                                <Box h='100%' w='100%' bg='blue.500' borderRadius='100%' boxShadow='dark-lg' borderTopWidth='thin' align='center' p='1'><MdCategory/></Box>
-                            </Box>    
+                            <Link to='/'>
+                                <Box h='2em' w='2em' ml='6px' bg='green.800' borderRadius='100%' pb='4px' pr='1px' pl='1px' className='pushable' onClick={() => setNavigation('Home')}>
+                                    <Box h='100%' w='100%' bg='green.500' borderRadius='100%' boxShadow='dark-lg' borderTopWidth='thin' align='center' p='1' className='focus'><FaHouseUser/></Box>
+                                </Box>
+                            </Link>
+                            <Link to='/Categories'>
+                                <Box h='2em' w='2em' mr='6px' bg='blue.800' borderRadius='100%' pb='4px' pr='1px' pl='1px' className='pushable' onClick={() => setNavigation('Categories')}>
+                                    <Box h='100%' w='100%' bg='blue.500' borderRadius='100%' boxShadow='dark-lg' borderTopWidth='thin' align='center' p='1' className='focus'><MdCategory/></Box>
+                                </Box>
+                            </Link> 
                         </Flex>
                         <Flex bg='gray.400' rounded='full' h='25%' w='80%' justifyContent='space-between' align='center' borderWidth='thin' borderColor='gray.300'>
-                            <Box h='2em' w='2em' ml='6px' bg='yellow.800' borderRadius='100%' pb='4px' pr='1px' pl='1px' >
-                                <Box h='100%' w='100%' bg='yellow.500' borderRadius='100%' boxShadow='dark-lg' borderTopWidth='thin' align='center' p='1'><FaHeart/></Box>
-                            </Box>
-                            <Box h='2em' w='2em' mr='6px' bg='red.800' borderRadius='100%' pb='4px' pr='1px' pl='1px' >
-                                <Box h='100%' w='100%' bg='red.500' borderRadius='100%' boxShadow='dark-lg' borderTopWidth='thin' align='center' p='1'><FaUserAstronaut /></Box>
-                            </Box> 
+                            <Link to='/Favorites'>
+                                <Box h='2em' w='2em' ml='6px' bg='yellow.800' borderRadius='100%' pb='4px' pr='1px' pl='1px' className='pushable' onClick={() => setNavigation('Favorites')}>
+                                    <Box h='100%' w='100%' bg='yellow.500' borderRadius='100%' boxShadow='dark-lg' borderTopWidth='thin' align='center' p='1' className='focus'><FaHeart/></Box>
+                                </Box>
+                            </Link>
+                            <Link to='Profile'>
+                                <Box h='2em' w='2em' mr='6px' bg='red.800' borderRadius='100%' pb='4px' pr='1px' pl='1px' className='pushable' onClick={() => setNavigation('Profile')}>
+                                    <Box h='100%' w='100%' bg='red.500' borderRadius='100%' boxShadow='dark-lg' borderTopWidth='thin' align='center' p='1' className='focus'><FaUserAstronaut /></Box>
+                                </Box> 
+                            </Link>
                         </Flex>
                     </Flex>
             </Flex>

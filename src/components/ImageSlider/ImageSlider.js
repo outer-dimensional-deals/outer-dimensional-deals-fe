@@ -1,21 +1,24 @@
 import React, {useState, useEffect} from 'react';
 import './ImageSlider.css';
-import { AspectRatio, Image, Flex, HStack, IconButton, Button, Box} from '@chakra-ui/react';
+import { AspectRatio, Image, Flex, HStack, IconButton, Button, Box, Skeleton} from '@chakra-ui/react';
 import { ArrowLeftIcon, ArrowRightIcon } from '@chakra-ui/icons';
-import { gameTrailersID } from '../../dumby-data/trendingGameTrailers';
-import { searchRawgApiByParams } from '../../utils/apiCalls';
 
 
-export const ImageSlider = () => {
 
-    const images = [ 
-        {image: "PwxIR4Qx6Fo"}, 
-        {image: "NthGfn_ddRQ"},
-        {image: "TYPmRWZYUus"}
-    ];
+export const ImageSlider = ({data}) => {
 
-    const [currentIndex, setCurrentIndex] = useState(0)
+
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [images, setImages] = useState([]);
+
+
   
+    useEffect(() => {
+        if (data) {
+            setImages(data.slice(0, 6).filter(element => element.videos).map(element => element.videos[0]))
+        }
+    }, [data])
+
 
     const goToPrevious = () => {
         const isFirstSlide = currentIndex === 0;
@@ -44,7 +47,7 @@ export const ImageSlider = () => {
     return (
         <Flex h={[ '20em', '40em']} w='auto' flexDirection='column' alignItems='center' background='black'>
             <HStack h='90%' w='100%' justifyContent='center' alignItems='center'>
-                <iframe height={[ '80%']} width="80%" src={`https://www.youtube.com/embed/${images[currentIndex].image}`} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;" allowFullScreen />
+                {/* <iframe height={[ '80%']} width="80%" src={`https://www.youtube.com/embed/${images[currentIndex].video_id}`} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;" allowFullScreen /> */}
             </HStack>
             <HStack  h={['20%', '10%']} w='100%' bg='gray' justifyContent='center' alignItems='center'>
                 <IconButton onClick={() => goToPrevious()} icon={<ArrowLeftIcon/>}/>
