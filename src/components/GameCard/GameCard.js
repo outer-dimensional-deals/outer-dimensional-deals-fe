@@ -55,7 +55,7 @@ const displayRelease = released.map(release => {
 
 
     return (
-        <Box w={['10em']} h={['auto']} borderWidth='1px' rounded='md' boxShadow='dark-lg' position='relative' transition='500ms' _hover={{ boxShadow: 'outline', transform: 'scale(1.5)', zIndex: '1'}} m={1} bg='white'>
+        <Box w={['10em']} h={['auto']} borderWidth='1px' rounded='md' boxShadow='dark-lg' position='relative' transition='500ms' _hover={{ boxShadow: 'outline', transform: 'scale(1.2)', zIndex: '1'}} m={1} bg='white'>
             <Flex h='100%' w='100%' flexDirection={['column']}>
                 <Skeleton isLoaded={isLoaded}>
                     <Image boxSize={'100%'} ratio={3 / 4} objectFit='cover' src={background.replace('t_thumb', 't_cover_big')} alt={name} rounded='md'/>

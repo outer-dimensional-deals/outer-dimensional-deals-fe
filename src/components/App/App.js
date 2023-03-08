@@ -24,13 +24,13 @@ export const App = () => {
   const escape = useKey('escape')
   //--CHAKRA-HOOKS--
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [isLoaded, setIsLoaded] = useState(false)
   //--REACT-HOOKS--
   const [input, setInput] = useState('');
   const [data, setData] = useState([]);
   const [trending, setTrending] = useState([]);
   const [anticipated, setAnticipated] = useState([]);
-  const trendy = [];
-  const anty = [];
+
 
   //--LOCATION--
   const [location, setLocation] = useState({name: 'Home'})
@@ -48,21 +48,12 @@ export const App = () => {
   }, [shift, escape])
 
   useEffect(() => {
-
-
-    findRecentlyReleasedSample()
+    setIsLoaded(false)
+    Promise.all([findRecentlyReleasedSample(), findAnticipatedSample()])
       .then(results => {
-        console.log(results)
-       setTrending(results)
-      })
-      .catch(error => {
-        console.log(error)
-      })
-      
-    findAnticipatedSample() 
-      .then(results => {
-        console.log(results)
-      setAnticipated(results)
+        setTrending(results[0])
+        setAnticipated(results[1])
+        setIsLoaded(true)
       })
       .catch(error => {
         console.log(error)
@@ -115,12 +106,14 @@ export const App = () => {
           <Flex flexDirection='column' h='100%' w='100%'>
             <NavBar onOpen={onOpen} />
             <Search isOpen={isOpen} onClose={onClose} handleChange={handleChange} handleSubmit={handleSubmit}/>
-            <Routes>
-              <Route exact path='/' element={<HomePage trending={trending} anticipated={anticipated} />} />
-              <Route exact path='/Categories' element={<Categories />} />
-              <Route exact path='/Favorites' element={<Favorites />} />
-              <Route exact path='/Profile' element={<Profile />}/>
-            </Routes>
+            {isLoaded &&
+              <Routes>
+                <Route exact path='/' element={<HomePage trending={trending} anticipated={anticipated} isLoaded={isLoaded} />} />
+                <Route exact path='/Categories' element={<Categories />} />
+                <Route exact path='/Favorites' element={<Favorites />} />
+                <Route exact path='/Profile' element={<Profile />}/>
+              </Routes>
+            }
           </Flex>
         </Flex>
       </Box>
