@@ -51,6 +51,7 @@ export const App = () => {
     setIsLoaded(false)
     Promise.all([findRecentlyReleasedSample(), findAnticipatedSample()])
       .then(results => {
+        console.log(results[0])
         setTrending(results[0])
         setAnticipated(results[1])
         setIsLoaded(true)

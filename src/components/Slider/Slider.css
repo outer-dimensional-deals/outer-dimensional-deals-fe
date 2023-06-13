@@ -1,8 +1,0 @@
-.Slider-Container {
-    scrollbar-width: none;
-    
-}
-
-.Slider-Container::-webkit-scrollbar {
-    display: none; /* for Chrome, Safari, and Opera */
-}

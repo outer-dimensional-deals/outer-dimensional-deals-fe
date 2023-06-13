@@ -12,7 +12,7 @@ import './NavBar.css';
 export const NavBar = ({onOpen}) => {
 
     return (
-        <Box w='auto' h='5em' background='grey' p='5'>
+        <Box w='auto' h='5%' background='black' p='5'>
             <Flex alignItems='center' justifyContent={['space-between', 'space-between', 'center']} h='100%' w='100%' >
                 <Show below='767px'>
                     <Icon as={GiAstronautHelmet} boxSize='10' mr='3'/>
