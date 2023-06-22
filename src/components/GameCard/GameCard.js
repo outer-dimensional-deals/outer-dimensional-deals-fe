@@ -27,6 +27,7 @@ useEffect(() => {
         setLogo(platforms)
     }
 
+
 }, [])
 
 const mapPlats = logo.map(platform => platform.name)
@@ -56,20 +57,9 @@ const displayRelease = released.map(release => {
 
     return (
         <Box w={['10em']} h={['auto']} borderWidth='1px' rounded='md' boxShadow='dark-lg' position='relative' transition='500ms' _hover={{ boxShadow: 'outline', transform: 'scale(1.2)', zIndex: '1'}} m={1} bg='white'>
-            <Flex h='100%' w='100%' flexDirection={['column']}>
-                <Skeleton isLoaded={isLoaded}>
-                    <Image boxSize={'100%'} ratio={3 / 4} objectFit='cover' src={background.replace('t_thumb', 't_cover_big')} alt={name} rounded='md'/>
-                </Skeleton>
-                {/* <Flex p='3' flexDirection='column' justifyContent='space-between' w='90%'>
-                    <Text fontSize='md'>{name}</Text>
-                    <HStack>
-                        {displayGenre}
-                    </HStack>
-                    <HStack>
-                        {mapIcons}
-                    </HStack>
-                </Flex> */}
-            </Flex>
+            <Skeleton isLoaded={isLoaded}>
+                <Image boxSize={'15em'} ratio={3 / 4} objectFit='cover' src={background.replace('t_thumb', 't_cover_big')} alt={name} rounded='md'/>
+            </Skeleton>
         </Box>
     )
 }

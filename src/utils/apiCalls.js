@@ -13,7 +13,6 @@ export async function listOfStores() {
 
 
 // EXPRESS API I MADE
-
 export async function findRecentlyReleasedGames() {
     const response = await fetch('http://localhost:3001/recently_released')
     if (!response.ok) {
@@ -44,6 +43,15 @@ export async function findRecentlyReleasedSample() {
 
 export async function findAnticipatedSample() {
     const response = await fetch('http://localhost:3001/anticipated_sample')
+    if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`)
+    }
+    const data = await response.json()
+    return data
+}
+
+export async function findGameGenre(options) {
+    const response = await fetch('http://localhost:3001/genre', options)
     if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`)
     }
