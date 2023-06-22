@@ -4,7 +4,7 @@ import { ChakraProvider, Flex, Box, Hide, Show, Text, useDisclosure } from '@cha
 import { useKey } from '../../hooks/useKey';
 // --APICALL--
 import { findRecentlyReleasedSample, findAnticipatedSample } from '../../utils/apiCalls';
-// --- COMPONENTS ---
+// --COMPONENTS--
 import { NavBar } from '../NavBar/NavBar';
 import { Search } from '../Search/Search'
 import { SideBar } from '../SideBar/SideBar';
@@ -12,7 +12,9 @@ import { HomePage } from '../HomePage/HomePage';
 import { Favorites } from '../Favorites/Favorites';
 import { Categories } from '../Categories/Categories';
 import { Profile } from '../Profile/Profile';
-//---- ROUTER ----
+import { GameGenres } from '../GameGenres/GameGenres';
+import { GameDetails } from '../GameDetails/GameDetails';
+// --ROUTER--
 import {Routes, Route} from 'react-router-dom'
 //AND FUNCTION
 const and = (a, b) => a && b
@@ -111,6 +113,7 @@ export const App = () => {
               <Routes>
                 <Route exact path='/' element={<HomePage trending={trending} anticipated={anticipated} isLoaded={isLoaded} />} />
                 <Route exact path='/Categories' element={<Categories />} />
+                <Route exact path='/Categories/:genreID' element={<GameGenres />} />
                 <Route exact path='/Favorites' element={<Favorites />} />
                 <Route exact path='/Profile' element={<Profile />}/>
               </Routes>

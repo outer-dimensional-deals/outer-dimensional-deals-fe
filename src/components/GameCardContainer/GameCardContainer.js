@@ -1,8 +1,10 @@
 import React from 'react';
 import './GameCardContainer.css';
 import { Box, Text, Flex, Heading, SimpleGrid } from '@chakra-ui/react';
-import { Link } from 'react-router-dom';
+// --COMPONENTS--
 import {GameCard} from '../GameCard/GameCard';
+// --ROUTER--
+import { Link } from 'react-router-dom';
 
 
 export const GameCardContainer = ({data, isLoaded}) => {
@@ -27,10 +29,9 @@ export const GameCardContainer = ({data, isLoaded}) => {
 })
 
 
-
     return (
       <>
-          <SimpleGrid columns={[1, 2, 3, 4]} spacing='40px' p={[0, 10]}>
+          <SimpleGrid className='GRID' h='100%' w='100%' columns={[1, 2, 3, 4]} spacing='40px' p={[0, 5]}>
             {mapData}
           </SimpleGrid>
       </>
