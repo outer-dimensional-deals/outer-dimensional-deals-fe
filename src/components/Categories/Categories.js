@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import './Categories.css'
 import { Box, Container, SimpleGrid, HStack, Tooltip, Icon, Button, Text, Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
+// --APICALL--
 import { findGameGenre } from '../../utils/apiCalls'
+// --COMPONENT--
 import { GameCardContainer } from '../GameCardContainer/GameCardContainer';
-import { Link } from 'react-router-dom';
 import { GameCard } from '../GameCard/GameCard';
+// --ROUTER--
+import { Link } from 'react-router-dom';
 
 const genres = [
     { name: "ADVENTURE ", id: 31 },
@@ -79,7 +82,7 @@ const TabContent = ({ selectedGenre }) => {
         <Box maxH='25em' overflow='scroll'>
             <SimpleGrid className='GRID' h='100%' w='100%' columns={[1, 2, 3, 4]} spacing='40px' p={[0, 10]} align='center'>
                 {displayData}
-                <Link to={`/:${genres[selectedGenre].name}`} state={{genre: genres[selectedGenre].id}}>
+                <Link to={`/Categories/:${genres[selectedGenre].name}`} state={{id: genres[selectedGenre].id}}>
                     <Button w='10em' h='15em' borderWidth='1px' rounded='md' boxShadow='dark-lg' position='relative' transition='500ms' _hover={{ boxShadow: 'outline', transform: 'scale(1.2)', zIndex: '1'}}>VIEW MORE</Button>
                 </Link>
             </SimpleGrid>
