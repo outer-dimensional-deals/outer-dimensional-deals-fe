@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './Categories.css'
-import { Box, Container, SimpleGrid, HStack, Tooltip, Icon, Button, Text, Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
+import { Box, Container, SimpleGrid, HStack, Tooltip, Icon, Button, Text, Tabs, TabList, TabPanels, Tab, TabPanel, Flex} from '@chakra-ui/react'
 // --APICALL--
 import { findGameGenre } from '../../utils/apiCalls'
 // --COMPONENT--
@@ -79,13 +79,13 @@ const TabContent = ({ selectedGenre }) => {
     })
 
     return (
-        <Box maxH='25em' overflow='scroll'>
-            <SimpleGrid className='GRID' h='100%' w='100%' columns={[1, 2, 3, 4]} spacing='40px' p={[0, 10]} align='center'>
+        <Box maxH='30em' maxW='100%' overflow='hidden' p='10' bg='yellow'>
+            <Flex h='100em' maxW='100%' bg='white' overflow='scroll' p='10'>
                 {displayData}
                 <Link to={`/Categories/:${genres[selectedGenre].name}`} state={{id: genres[selectedGenre].id}}>
-                    <Button w='10em' h='15em' borderWidth='1px' rounded='md' boxShadow='dark-lg' position='relative' transition='500ms' _hover={{ boxShadow: 'outline', transform: 'scale(1.2)', zIndex: '1'}}>VIEW MORE</Button>
+                    <Button w='12em' h='15.1em' borderWidth='1px' rounded='md' boxShadow='dark-lg' position='relative' transition='500ms' _hover={{ boxShadow: 'outline', transform: 'scale(1.06)', zIndex: '1'}} m={1}>VIEW MORE</Button>
                 </Link>
-            </SimpleGrid>
+            </Flex>
         </Box>
     )
 }
@@ -94,7 +94,7 @@ export const Categories = () => {
     const [selectedTab, setSelectedTab] = useState(0);
 
     return (
-        <Container maxW='container.lg' mt='10' overflow='hidden'>
+        <Container maxW='75vw' mt='10' overflow='hidden'>
             <Tabs h='100%' w='100%' variant='soft-rounded' isLazy onChange={setSelectedTab} bg='grey'>
                 <TabList spacing={5} overflowY='scroll'>
                     {genres.map((genre, idx) => {

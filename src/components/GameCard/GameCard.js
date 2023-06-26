@@ -14,8 +14,7 @@ const breakpoints = {
 
   const theme = extendTheme({ breakpoints })
 
-export const GameCard = ({isLoaded, id, name, background, genres, platforms, ratings, released}) => {
-const [logo, setLogo] = useState([])
+export const GameCard = ({isLoaded, id, name, background, genres, storyline, summary, ratings, released}) => {
 const [genreName, setGenreName] = useState([])
 
 useEffect(() => {
@@ -23,23 +22,10 @@ useEffect(() => {
     if (genres) {
         setGenreName(genres)
     }
-    if (platforms) {
-        setLogo(platforms)
-    }
 
 
 }, [])
 
-const mapPlats = logo.map(platform => platform.name)
-
-const filterIcons = assets.filter(asset => mapPlats.includes(asset.name))
-
-
-const mapIcons = filterIcons.map(icon => {
-    return (
-        <Icon as={icon.img} key={icon.name}/>
-    )
-})
 
 const displayGenre = genreName.map(genre => {
 
@@ -56,7 +42,7 @@ const displayRelease = released.map(release => {
 
 
     return (
-        <Box w={['10em']} h={['auto']} borderWidth='1px' rounded='md' boxShadow='dark-lg' position='relative' transition='500ms' _hover={{ boxShadow: 'outline', transform: 'scale(1.2)', zIndex: '1'}} m={1} bg='white'>
+        <Box w={['12em']} h={['15.1em']} borderWidth='1px' rounded='md' boxShadow='dark-lg' position='relative' transition='500ms' _hover={{ boxShadow: 'outline', transform: 'scale(1.06)', zIndex: '1'}} m={1} bg='white'>
             <Skeleton isLoaded={isLoaded}>
                 <Image boxSize={'15em'} ratio={3 / 4} objectFit='cover' src={background.replace('t_thumb', 't_cover_big')} alt={name} rounded='md'/>
             </Skeleton>

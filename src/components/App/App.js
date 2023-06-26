@@ -19,6 +19,7 @@ import {Routes, Route} from 'react-router-dom'
 //AND FUNCTION
 const and = (a, b) => a && b
 
+
 export const App = () => {
 
   //--CUSTOM HOOK--
@@ -106,7 +107,7 @@ export const App = () => {
           <Show above='769px'>
             <SideBar  setNavigation={setNavigation} location={location}/>
           </Show>
-          <Flex flexDirection='column' h='100%' w='100%'>
+          <Flex className='MAIN-WRAPPER' flexDirection='column' h='100%' w='100%'>
             <NavBar onOpen={onOpen} />
             <Search isOpen={isOpen} onClose={onClose} handleChange={handleChange} handleSubmit={handleSubmit}/>
             {isLoaded &&
@@ -114,6 +115,7 @@ export const App = () => {
                 <Route exact path='/' element={<HomePage trending={trending} anticipated={anticipated} isLoaded={isLoaded} />} />
                 <Route exact path='/Categories' element={<Categories />} />
                 <Route exact path='/Categories/:genreID' element={<GameGenres />} />
+                <Route exact path='/:gameDetails' element={<GameDetails />}/>
                 <Route exact path='/Favorites' element={<Favorites />} />
                 <Route exact path='/Profile' element={<Profile />}/>
               </Routes>

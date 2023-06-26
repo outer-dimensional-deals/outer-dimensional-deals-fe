@@ -19,7 +19,8 @@ export const GameCardContainer = ({data, isLoaded}) => {
                 name={data.name} 
                 background={data.cover.url} 
                 genres={data.genres}
-                platforms={data.platforms}
+                stoyrline={data.storyline}
+                summary={data.summary}
                 ratings={data.aggregated_rating}
                 released={data.release_dates}
                 screenshots={data.screenshots}
@@ -31,9 +32,12 @@ export const GameCardContainer = ({data, isLoaded}) => {
 
     return (
       <>
-          <SimpleGrid className='GRID' h='100%' w='100%' columns={[1, 2, 3, 4]} spacing='40px' p={[0, 5]}>
+          <SimpleGrid className='GRID' h='100%' w='100%' columns={[1, 2, 3, 4]} spacing='40px' p={[0, 5]} align='center'>
             {mapData}
           </SimpleGrid>
+          {/* <Flex h='100%' w='100%' display='column' pb='10em'> 
+            {mapData}
+          </Flex> */}
       </>
     )
 }
