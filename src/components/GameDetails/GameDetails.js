@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import './GameDetails.css'
-import { Box, Container, Flex, Text} from '@chakra-ui/react'
+import { Box, Container, Flex, Text, Image, Tag, SimpleGrid, Tabs, TabList, TabPanels, Tab, TabPanel, Button} from '@chakra-ui/react'
 // --ROUTER--
 import { useLocation } from 'react-router-dom';
+import { findGameDeals } from '../../utils/apiCalls';
 
 
 
@@ -11,26 +12,101 @@ export const GameDetails = (props) => {
     const propsData = location.state;
     const [ details, setDetails ] = useState({})
     const [ videos, setVideos ] = useState([])
+    const [ photos, setPhotos ] = useState([])
+    const [ genres, setGenres ] = useState([])
 
     useEffect(() => {
         setDetails(propsData.data)
-        setVideos(propsData.data.videos[0].video_id)
+        setPhotos(propsData.data.screenshots)
+        setGenres(propsData.data.genres)
+
+        if (propsData.data.videos) {
+            setVideos(propsData.data.videos)
+        }  
+        findGameDeals(propsData.data.name)
+        .then(results => {
+            console.log("deals results", results)
+        })
+        .catch(error => {
+            console.log(error)
+        })
     }, [])
 
+    
+    const genresDisplay = genres.map(element => {
+        return (
+            <Tag mt='2' className='TEXT'>{element.name}</Tag>
+            )
+        })
+
+    const videosDisplay = videos?.map((element, index) => {
+        return (
+            <TabPanel>
+                <iframe className='VIDEO-DISPLAY' key={index} height='400em' width="100%" src={`https://www.youtube.com/embed/${element.video_id}`} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;" allowFullScreen></iframe>
+            </TabPanel>
+        )
+    })
+        
+    const screenshotsDisplay = photos.map((element, index) => {
+        return (
+            <TabPanel>
+                <Image className='VIDEO-DISPLAY' h='25em' w='100%' src={element.url.replace('t_thumb', 't_cover_big')}/>
+            </TabPanel>
+        )
+    })
+
+    const videosName = videos.map((element, index) => {
+        return (
+            <Tab>
+                <Text className='TEXT'>
+                    {element.name}
+                </Text>
+            </Tab>
+        )
+    })
+
+
+    const screenshotsName = photos.map((element, index) => {
+        return (
+            <Tab>
+                <Text className='TEXT'>Screenshot {index + 1}</Text>
+            </Tab>
+        )
+    })
+
     console.log(propsData)
-    console.log(propsData.data.videos[0].video_id)
     return (
-        // <Container className='Details_Container' maxH='100em' maxW='100Vw' bg='yellow' p='10'>
-            <Flex h='100%' w='100%' justifyContent='space-around' p='10'>
-                <Box bg='grey' h='20em' w='40em' display='flex' justifyContent='center' alignItems='center'>
-                    <iframe className='VIDEO-DISPLAY' height='97%' width="97%" src={`https://www.youtube.com/embed/${videos}`} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;" allowFullScreen></iframe>
-                </Box>
-                <Box h='20em' w='20em' bg='blue' rounded='2xl' display='flex' flexDirection='column' alignItems='center' p='5'>
-                    <Text className='TEXT' fontSize='sm'>{details.name}</Text>
-                    {/* <Text>{details.genres[0].name}</Text> */}
-                    <Text>{details.summary}</Text>
+        <Box h='100vh' w='75vw' overflow='hidden'>
+            <Flex h='90%' w='100%' p='10' flexDirection='column' overflowY='scroll'>
+                <Text className='TEXT'>{details.name}</Text>
+                <Flex h='90%' w='100%' justifyContent='space-around'>
+                    <Box h='100%' w='60%'>
+                        <Tabs variant='soft-rounded'>
+                            <TabPanels>
+                                {videos.length <= 0 ? null : videosDisplay}
+                                {photos.length <= 0 ? null : screenshotsDisplay}
+                            </TabPanels>
+                            <TabList overflow='scroll' border='10px' borderStyle='outset'>
+                                {videos.length <= 0 ? null : videosName}
+                                {photos.length <= 0 ? null : screenshotsName}
+                            </TabList>
+                        </Tabs>
+                    </Box>
+                    <Box h='100%' w='30%' pt='4' pr='4'>
+                        <Box align='center'>
+                            <Image boxSize='70%' ratio={3 / 4} objectFit='cover' src={propsData.data.cover.url.replace('t_thumb', 't_cover_big')} rounded='md'/>
+                        </Box>
+                        <Box mt='2'>
+                            {details.storyline ? <Text mt='3' mb='3' className='TEXT' fontSize='20%'>{details.storyline}</Text> : <Text mt='3' nb='3' className='TEXT' fontSize='20%'>{details.summary}</Text>}
+                            {genresDisplay}
+                        </Box>
+                        <Button mt='2'>SAVE</Button>
+                    </Box>
+                </Flex>
+                <Box>
+                    <Text>LIST OF DEALS</Text>
                 </Box>
             </Flex>
-        // </Container>
+        </Box>
     )
 }

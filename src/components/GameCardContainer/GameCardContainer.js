@@ -35,9 +35,6 @@ export const GameCardContainer = ({data, isLoaded}) => {
           <SimpleGrid className='GRID' h='100%' w='100%' columns={[1, 2, 3, 4]} spacing='40px' p={[0, 5]} align='center'>
             {mapData}
           </SimpleGrid>
-          {/* <Flex h='100%' w='100%' display='column' pb='10em'> 
-            {mapData}
-          </Flex> */}
       </>
     )
 }
