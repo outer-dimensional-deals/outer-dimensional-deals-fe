@@ -14,6 +14,7 @@ export const GameDetails = (props) => {
     const [ videos, setVideos ] = useState([])
     const [ photos, setPhotos ] = useState([])
     const [ genres, setGenres ] = useState([])
+    const [ deals, setDeals ] = useState([])
 
     useEffect(() => {
         setDetails(propsData.data)
@@ -23,9 +24,11 @@ export const GameDetails = (props) => {
         if (propsData.data.videos) {
             setVideos(propsData.data.videos)
         }  
+
         findGameDeals(propsData.data.name)
         .then(results => {
             console.log("deals results", results)
+            setDeals(results)
         })
         .catch(error => {
             console.log(error)
@@ -74,6 +77,21 @@ export const GameDetails = (props) => {
         )
     })
 
+    const displayDeals = deals.map(element => {
+
+        return (
+            <a href={`https://www.cheapshark.com/redirect?dealID=${element.dealID}`}>
+            <Flex h='100%' w='100%' justifyContent='space-between' border='1px'>
+                <Text className='TEXT' ml='2'>{element.title}</Text>
+                <Flex justifyContent='space-around'>
+                    <Text mr='5' className='TEXT'>Normal: {element.normalPrice}</Text>
+                    <Text mr='5' className='TEXT'>Sales: {element.salePrice}</Text>
+                </Flex>
+            </Flex>
+            </a>
+        )
+    })
+
     console.log(propsData)
     return (
         <Box h='100vh' w='75vw' overflow='hidden'>
@@ -97,15 +115,17 @@ export const GameDetails = (props) => {
                             <Image boxSize='70%' ratio={3 / 4} objectFit='cover' src={propsData.data.cover.url.replace('t_thumb', 't_cover_big')} rounded='md'/>
                         </Box>
                         <Box mt='2'>
-                            {details.storyline ? <Text mt='3' mb='3' className='TEXT' fontSize='20%'>{details.storyline}</Text> : <Text mt='3' nb='3' className='TEXT' fontSize='20%'>{details.summary}</Text>}
-                            {genresDisplay}
+                            {details.summary ? <Text mt='3' nb='3' className='TEXT' fontSize='20%'>{details.summary}</Text> : <Text mt='3' mb='3' className='TEXT' fontSize='20%'>{details.storyline}</Text>}
+                            <Flex flexDir='column'>
+                                {genresDisplay}
+                                <Button mt='2' className='TEXT'>SAVE</Button>
+                            </Flex>
                         </Box>
-                        <Button mt='2'>SAVE</Button>
                     </Box>
                 </Flex>
-                <Box>
-                    <Text>LIST OF DEALS</Text>
-                </Box>
+                <Flex h='100%' w='100%' flexDir='column' mt='10%' mb='5%'>
+                    {displayDeals}
+                </Flex>
             </Flex>
         </Box>
     )
