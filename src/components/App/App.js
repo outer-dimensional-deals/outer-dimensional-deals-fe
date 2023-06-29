@@ -107,7 +107,7 @@ export const App = () => {
           <Show above='769px'>
             <SideBar  setNavigation={setNavigation} location={location}/>
           </Show>
-          <Flex className='MAIN-WRAPPER' flexDirection='column' h='100%' w='100%'>
+          <Flex className='MAIN-WRAPPER' flexDirection='column' h='100%' w='100%' bg='gray.700'>
             <NavBar onOpen={onOpen} />
             <Search isOpen={isOpen} onClose={onClose} handleChange={handleChange} handleSubmit={handleSubmit}/>
             {isLoaded &&

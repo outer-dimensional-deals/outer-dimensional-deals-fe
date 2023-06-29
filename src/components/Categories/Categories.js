@@ -79,8 +79,8 @@ const TabContent = ({ selectedGenre }) => {
     })
 
     return (
-        <Box maxH='30em' maxW='100%' overflow='hidden' p='10' bg='yellow'>
-            <Flex h='100em' maxW='100%' bg='white' overflow='scroll' p='10'>
+        <Box maxH='30em' maxW='100%' overflow='hidden' p='10'>
+            <Flex h='100em' maxW='100%' overflow='scroll' p='10' bg='gray.700'>
                 {displayData}
                 <Link to={`/Categories/:${genres[selectedGenre].name}`} state={{id: genres[selectedGenre].id}}>
                     <Button w='12em' h='15.1em' borderWidth='1px' rounded='md' boxShadow='dark-lg' position='relative' transition='500ms' _hover={{ boxShadow: 'outline', transform: 'scale(1.06)', zIndex: '1'}} m={1}>VIEW MORE</Button>
@@ -94,12 +94,12 @@ export const Categories = () => {
     const [selectedTab, setSelectedTab] = useState(0);
 
     return (
-        <Container maxW='75vw' mt='10' overflow='hidden'>
-            <Tabs h='100%' w='100%' variant='soft-rounded' isLazy onChange={setSelectedTab} bg='grey'>
-                <TabList spacing={5} overflowY='scroll'>
+        <Container maxW='75vw' mt='10' overflow='hidden' bg='gray.700'>
+            <Tabs h='100%' w='100%' variant='soft-rounded' isLazy onChange={setSelectedTab}>
+                <TabList spacing={5} overflowY='scroll' bg='blue.900' boxShadow='dark-lg'>
                     {genres.map((genre, idx) => {
                         return (
-                            <Tab className='TEXT' key={idx}>{genre.name}</Tab>
+                            <Tab className='TEXT' key={idx} color='white'>{genre.name}</Tab>
                         )
                     })}
                 </TabList>
