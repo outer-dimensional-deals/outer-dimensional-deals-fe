@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import './GameDetails.css'
-import { Box, Container, Flex, Text, Image, Tag, SimpleGrid, Tabs, TabList, TabPanels, Tab, TabPanel, Button} from '@chakra-ui/react'
+import { Box, Container, Flex, Text, Image, Tag, SimpleGrid, Tabs, TabList, TabPanels, Tab, TabPanel, Button, Icon} from '@chakra-ui/react'
 // --ROUTER--
 import { useLocation } from 'react-router-dom';
 import { findGameDeals } from '../../utils/apiCalls';
+import { IoIosHeart, IoIosHeartHalf, IoIosHeartEmpty } from 'react-icons/io';
 
 
 
@@ -80,7 +81,7 @@ export const GameDetails = (props) => {
     const displayDeals = deals.map(element => {
 
         return (
-            <Box mt='10px' bg='gray.800' boxShadow='dark-lg' _hover={{color: 'gray.200'}}>
+            <Box mt='10px' bg='gray.800' boxShadow='dark-lg' _hover={{color: 'blue.300'}}>
             <a href={`https://www.cheapshark.com/redirect?dealID=${element.dealID}`}>
             <Flex h='100%' w='100%' justifyContent='space-between' border='1px'>
                 <Text className='TEXT' ml='2' color='white'>{element.title}</Text>
@@ -101,7 +102,7 @@ export const GameDetails = (props) => {
             <Flex h='100%' w='100%' p='10' flexDirection='column' overflowY='scroll'>
                 <Text className='TEXT' color='white' bg='blue.900'>{details.name}</Text>
                 <Flex h='90%' w='100%' justifyContent='space-around' bg='gray.800' boxShadow='lg'>
-                    <Box h='100%' w='60%'>
+                    <Box h='100%' w='60%' bg='blackAlpha.400' boxShadow='dark-lg'>
                         <Tabs variant='soft-rounded'>
                             <TabPanels>
                                 {videos.length <= 0 ? null : videosDisplay}
@@ -113,20 +114,27 @@ export const GameDetails = (props) => {
                             </TabList>
                         </Tabs>
                     </Box>
-                    <Box h='100%' w='30%' pt='4' pr='4' mb='2%'>
+                    <Box h='100%' w='30%' pt='4' pr='4' pl='4' mb='2%' bg='blackAlpha.400' boxShadow='dark-lg'>
                         <Box align='center'>
                             <Image boxSize='60%' ratio={3 / 4} objectFit='cover' src={propsData.data.cover.url.replace('t_thumb', 't_cover_big')} rounded='md' boxShadow='lg' />
                         </Box>  
-                        <Box mt='2'>
-                            {details.summary ? <Text mt='3' nb='3' className='TEXT' fontSize='20%' color='white'>{details.summary}</Text> : <Text mt='3' mb='3' className='TEXT' fontSize='20%'>{details.storyline}</Text>}
+                        <Box h='25%' mt='2' overflow='hidden'>
+                            <Box h='100%' overflow='scroll'>
+                            {details.summary ? <Text mt='1' className='TEXT' fontSize='20%' color='white'>{details.summary}</Text> : <Text mt='3' mb='3' className='TEXT' fontSize='20%'>{details.storyline}</Text>}
+                            </Box>
+                        </Box>
                             <Flex flexDir='column'>
                                 {genresDisplay}
-                                <Button mt='2' className='TEXT' boxShadow='dark-lg'>SAVE</Button>
+                                <Button mt='2' className='TEXT' boxShadow='dark-lg' bg='blue.900'>
+                                    <Text color='white'>SAVE</Text>
+                                    <Icon as={IoIosHeart} color='white'/>
+                                    <Icon as={IoIosHeartHalf} color='white'/>
+                                    <Icon as={IoIosHeartEmpty} color='white'/>
+                                </Button>
                             </Flex>
-                        </Box>
                     </Box>
                 </Flex>
-                <Flex h='10%' w='100%' flexDir='column' mt='5%' mb='20%'>
+                <Flex h='100%' w='100%' flexDir='column' mt='5%' mb='20%' bg='blue.800'>
                     {displayDeals}
                 </Flex>
             </Flex>

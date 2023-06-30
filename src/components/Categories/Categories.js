@@ -79,12 +79,15 @@ const TabContent = ({ selectedGenre }) => {
     })
 
     return (
-        <Box maxH='30em' maxW='100%' overflow='hidden' p='10'>
-            <Flex h='100em' maxW='100%' overflow='scroll' p='10' bg='gray.700'>
-                {displayData}
-                <Link to={`/Categories/:${genres[selectedGenre].name}`} state={{id: genres[selectedGenre].id}}>
-                    <Button w='12em' h='15.1em' borderWidth='1px' rounded='md' boxShadow='dark-lg' position='relative' transition='500ms' _hover={{ boxShadow: 'outline', transform: 'scale(1.06)', zIndex: '1'}} m={1}>VIEW MORE</Button>
-                </Link>
+        <Box maxH='75em' maxW='100%' overflow='hidden' p='10'>
+            <Flex h='25em' bg='gray.800' flexDir='column' boxShadow='dark-lg'>
+                <Text color='white' align='center' className='TEXT' m='2'>{genres[selectedGenre].name}</Text>
+                <Flex overflow='scroll' p='10' h='100%'>
+                    {displayData}
+                    <Link to={`/Categories/:${genres[selectedGenre].name}`} state={{id: genres[selectedGenre].id}}>
+                        <Button w='12em' h='15.1em' borderWidth='1px' rounded='md' boxShadow='dark-lg' position='relative' transition='500ms' _hover={{ boxShadow: 'outline', transform: 'scale(1.06)', zIndex: '1'}} m={1}>VIEW MORE</Button>
+                    </Link>
+                </Flex>
             </Flex>
         </Box>
     )
