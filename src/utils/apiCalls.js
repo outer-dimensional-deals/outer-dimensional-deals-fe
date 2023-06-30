@@ -63,3 +63,12 @@ export async function findGameGenre(options) {
     const data = await response.json()
     return data
 }
+
+export async function findGameDeals(name) {
+    const response = await fetch(`https://www.cheapshark.com/api/1.0/deals?title=${name}`)
+    if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`)
+    }
+    const data = await response.json()
+    return data
+}

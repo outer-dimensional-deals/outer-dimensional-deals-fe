@@ -41,7 +41,6 @@ export const ImageSlider = ({data}) => {
         )
     })
 
-
     return (
         <Flex h={[ '20em', '30em']} w='auto' flexDirection='column' alignItems='center' background='black'>
             <HStack h='90%' w='100%' justifyContent='center' alignItems='center'>

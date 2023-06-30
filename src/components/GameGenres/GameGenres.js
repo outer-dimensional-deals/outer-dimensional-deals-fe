@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './GameGenres.css';
-import { Box, Container } from '@chakra-ui/react'
+import { Box, Container, Button} from '@chakra-ui/react'
 // --APICALL--
 import { findFullGameGenre } from '../../utils/apiCalls';
 // --COMPONENTS--
 import { GameCardContainer } from '../GameCardContainer/GameCardContainer';
 // --ROUTER--
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 export const GameGenres = (props) => {
     const location = useLocation();
@@ -35,10 +35,8 @@ export const GameGenres = (props) => {
     }, [])
 
     return (
-        <Container maxW='container.lg'>
-            <Box h='40em' overflow='scroll' align='center'>
-                <GameCardContainer data={genreStack} isLoaded={isLoaded}/>
-            </Box>
-        </Container>
+        <Box h='39em' w='100%' overflow='scroll' p='10'>
+            <GameCardContainer data={genreStack} isLoaded={isLoaded}/>
+        </Box>
     )
 }
