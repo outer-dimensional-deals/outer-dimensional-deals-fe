@@ -39,21 +39,21 @@ export const GameDetails = (props) => {
 
     }, []);
     
-    const genresDisplay = genres.map(element => {
+    const genresDisplay = genres.map((element, index) => {
         return (
-            <Tag mt='2' className='TEXT' color='blue.200' bg='blue.900'>{element.name}</Tag>
+            <Tag mt='2' className='TEXT' color='blue.200' bg='blue.900' key={index}>{element.name}</Tag>
             )
         })
 
-    const videosDisplay = videos?.map((element, index) => {
+    const videosDisplay = videos.map((element, index) => {
         return (
-            <TabPanel>
+            <TabPanel key={index}>
                 <iframe className='VIDEO-DISPLAY' key={index} height='400em' width="100%" src={`https://www.youtube.com/embed/${element.video_id}`} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;" allowFullScreen></iframe>
             </TabPanel>
         )
     })
         
-    const screenshotsDisplay = photos.map((element, index) => {
+    const screenshotsDisplay = photos?.map((element, index) => {
         return (
             <TabPanel>
                 <Image className='VIDEO-DISPLAY' h='25em' w='100%' src={element.url.replace('t_thumb', 't_cover_big')} />
@@ -63,7 +63,7 @@ export const GameDetails = (props) => {
 
     const videosName = videos.map((element, index) => {
         return (
-            <Tab>
+            <Tab key={index}>
                 <Text className='TEXT' color='white'>
                     {element.name}
                 </Text>
@@ -72,9 +72,9 @@ export const GameDetails = (props) => {
     })
 
 
-    const screenshotsName = photos.map((element, index) => {
+    const screenshotsName = photos?.map((element, index) => {
         return (
-            <Tab>
+            <Tab key={index}>
                 <Text className='TEXT' color='white'>Screenshot {index + 1}</Text>
             </Tab>
         )
@@ -172,11 +172,11 @@ export const GameDetails = (props) => {
                         <Tabs variant='soft-rounded'>
                             <TabPanels>
                                 {videos.length <= 0 ? null : videosDisplay}
-                                {photos.length <= 0 ? null : screenshotsDisplay}
+                                {!photos || photos.length <= 0 ? null : screenshotsDisplay}
                             </TabPanels>
                             <TabList overflow='scroll' border='10px' bg='blue.900' mb='2%' boxShadow='dark-lg'>
                                 {videos.length <= 0 ? null : videosName}
-                                {photos.length <= 0 ? null : screenshotsName}
+                                {!photos || photos.length <= 0 ? null : screenshotsName}
                             </TabList>
                         </Tabs>
                     </Box>
@@ -184,7 +184,7 @@ export const GameDetails = (props) => {
                         <Box align='center'>
                             <Image boxSize='60%' ratio={3 / 4} objectFit='cover' src={propsData.data.cover.url.replace('t_thumb', 't_cover_big')} rounded='md' boxShadow='lg' />
                         </Box>  
-                        <Box h='25%' mt='2' overflow='hidden'>
+                        <Box h='15%' mt='2' overflow='hidden'>
                             <Box h='100%' overflow='scroll'>
                             {details.summary ? <Text mt='1' className='TEXT' fontSize='20%' color='white'>{details.summary}</Text> : <Text mt='3' mb='3' className='TEXT' fontSize='20%'>{details.storyline}</Text>}
                             </Box>

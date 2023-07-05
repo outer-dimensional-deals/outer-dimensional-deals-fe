@@ -15,7 +15,7 @@ import { Profile } from '../Profile/Profile';
 import { GameGenres } from '../GameGenres/GameGenres';
 import { GameDetails } from '../GameDetails/GameDetails';
 // --ROUTER--
-import {Routes, Route} from 'react-router-dom'
+import {Routes, Route, useNavigate} from 'react-router-dom'
 //AND FUNCTION
 const and = (a, b) => a && b
 
@@ -33,6 +33,8 @@ export const App = () => {
   const [data, setData] = useState([]);
   const [trending, setTrending] = useState([]);
   const [anticipated, setAnticipated] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
+  const navigate = useNavigate();
 
 
   //--LOCATION--
@@ -70,7 +72,7 @@ export const App = () => {
   }
 
   const handleSubmit = () => {
-
+    navigate('/');
     const searchItem = {
       search: input,
 
@@ -87,11 +89,12 @@ export const App = () => {
     searchGameCloud(options)
       .then(results => {
         console.log(results)
+        setSearchResults(results)
       })
       .catch(error => {
         console.log(error)
       })
-      
+
     onClose()
   }
 
@@ -131,7 +134,7 @@ export const App = () => {
             <Search isOpen={isOpen} onClose={onClose} handleChange={handleChange} handleSubmit={handleSubmit}/>
             {isLoaded &&
               <Routes>
-                <Route exact path='/' element={<HomePage trending={trending} anticipated={anticipated} isLoaded={isLoaded} />} />
+                <Route exact path='/' element={<HomePage searchResults={searchResults} isLoaded={isLoaded} />} />
                 <Route exact path='/Categories' element={<Categories />} />
                 <Route exact path='/Categories/:genreID' element={<GameGenres />} />
                 <Route exact path='/:gameDetails' element={<GameDetails />}/>
