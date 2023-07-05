@@ -1,3 +1,12 @@
+export async function searchGameCloud(options) {
+    const response = await fetch('http://localhost:3001/search_games', options)
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`)
+        }
+        const data = await response.json()
+        return data
+}
+
 export async function deleteData(options) {
     const response = await fetch('http://localhost:3001/delete_data', options)
         if (!response.ok) {

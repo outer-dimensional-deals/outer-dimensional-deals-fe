@@ -3,7 +3,7 @@ import './App.css';
 import { ChakraProvider, Flex, Box, Hide, Show, Text, useDisclosure } from '@chakra-ui/react';
 import { useKey } from '../../hooks/useKey';
 // --APICALL--
-import { findRecentlyReleasedSample, findAnticipatedSample, displaySaved } from '../../utils/apiCalls';
+import { findRecentlyReleasedSample, findAnticipatedSample, searchGameCloud  } from '../../utils/apiCalls';
 // --COMPONENTS--
 import { NavBar } from '../NavBar/NavBar';
 import { Search } from '../Search/Search'
@@ -70,9 +70,28 @@ export const App = () => {
   }
 
   const handleSubmit = () => {
-    //Convert to slug
-    let slug = "games?search=" + input.split(' ').join('-').toLowerCase() 
-    //Search Title
+
+    const searchItem = {
+      search: input,
+
+    }
+
+    const options = {
+      method: "POST",
+      headers: {
+          "Content-Type": 'application/json'
+      },
+      body: JSON.stringify(searchItem)
+    };
+
+    searchGameCloud(options)
+      .then(results => {
+        console.log(results)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+      
     onClose()
   }
 
