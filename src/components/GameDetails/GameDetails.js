@@ -3,8 +3,9 @@ import './GameDetails.css'
 import { Box, Container, Flex, Text, Image, Tag, SimpleGrid, Tabs, TabList, TabPanels, Tab, TabPanel, Button, Icon} from '@chakra-ui/react'
 // --ROUTER--
 import { useLocation } from 'react-router-dom';
-import { findGameDeals } from '../../utils/apiCalls';
+import { displaySaved, findGameDeals, saveData, deleteData } from '../../utils/apiCalls';
 import { IoIosHeart, IoIosHeartHalf, IoIosHeartEmpty } from 'react-icons/io';
+import { FaTrash } from 'react-icons/fa'
 
 
 
@@ -16,26 +17,27 @@ export const GameDetails = (props) => {
     const [ photos, setPhotos ] = useState([])
     const [ genres, setGenres ] = useState([])
     const [ deals, setDeals ] = useState([])
+    const [ isDisabled, setIsDisabled ] = useState(false)
 
     useEffect(() => {
         setDetails(propsData.data)
         setPhotos(propsData.data.screenshots)
         setGenres(propsData.data.genres)
-
+        
         if (propsData.data.videos) {
             setVideos(propsData.data.videos)
         }  
-
-        findGameDeals(propsData.data.name)
+        
+        Promise.all([findGameDeals(propsData.data.name), displaySaved()])
         .then(results => {
-            console.log("deals results", results)
-            setDeals(results)
+            setDeals(results[0])
+            checkDisabled(results[1].games)
         })
         .catch(error => {
             console.log(error)
         })
-    }, [])
 
+    }, []);
     
     const genresDisplay = genres.map(element => {
         return (
@@ -81,7 +83,7 @@ export const GameDetails = (props) => {
     const displayDeals = deals.map(element => {
 
         return (
-            <Box mt='10px' bg='gray.800' boxShadow='dark-lg' _hover={{color: 'blue.300'}}>
+            <Box mt='10px' bg='gray.800' boxShadow='dark-lg' _hover={{color: 'blue.300'}} key={element.dealID}>
             <a href={`https://www.cheapshark.com/redirect?dealID=${element.dealID}`}>
             <Flex h='100%' w='100%' justifyContent='space-between' border='1px'>
                 <Text className='TEXT' ml='2' color='white'>{element.title}</Text>
@@ -96,7 +98,71 @@ export const GameDetails = (props) => {
         )
     })
 
-    console.log(propsData)
+    const checkDisabled = (results) => {
+        console.log(results)
+        let checked = results.find((element) => element.id === propsData.data.id)
+
+        setIsDisabled(checked ? true : false)
+    }
+
+    const saveGameToCloud = () => {
+        const postObject = {
+            id: propsData.data.id,
+            name: propsData.data.name,
+            cover: propsData.data.cover,
+            genres: propsData.data.genres,
+            platforms: propsData.data.platforms,
+            release_dates: propsData.data.release_dates,
+            screenshots: propsData.data.screenshots,
+            summary: propsData.data.summary,
+            deals: deals
+        }
+        postSavedData(postObject) 
+    }
+
+    const postSavedData = (postObject) => {
+        const options = {
+            method: "POST",
+            headers: {
+                "Content-Type": 'application/json'
+            },
+            body: JSON.stringify(postObject)
+        };
+
+        saveData(options)
+        .then(results => {
+            console.log(results)
+            setIsDisabled(true)
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    }
+
+    const deleteFromCloud = () => {
+        const postObject = {
+            id: propsData.data.id,
+            name: propsData.data.name,
+            cover: propsData.data.cover,
+            genres: propsData.data.genres,
+            platforms: propsData.data.platforms,
+            release_dates: propsData.data.release_dates,
+            screenshots: propsData.data.screenshots,
+            summary: propsData.data.summary,
+            deals: deals
+        }
+        const options = {
+            method: "DELETE",
+            headers: {
+                "Content-Type": 'application/json'
+            },
+            body: JSON.stringify(postObject)
+        };
+        setIsDisabled(false)
+
+        deleteData(options)
+    }
+
     return (
         <Box h='100vh' w='75vw' overflow='hidden'>
             <Flex h='100%' w='100%' p='10' flexDirection='column' overflowY='scroll'>
@@ -125,12 +191,18 @@ export const GameDetails = (props) => {
                         </Box>
                             <Flex flexDir='column'>
                                 {genresDisplay}
-                                <Button mt='2' className='TEXT' boxShadow='dark-lg' bg='blue.900'>
-                                    <Text color='white'>SAVE</Text>
-                                    <Icon as={IoIosHeart} color='white'/>
-                                    <Icon as={IoIosHeartHalf} color='white'/>
-                                    <Icon as={IoIosHeartEmpty} color='white'/>
-                                </Button>
+                                <Flex flexDir='default' justifyContent='space-between'>
+                                    <Button mt='2' className='TEXT' boxShadow='dark-lg' bg='blue.900' isDisabled={isDisabled} onClick={() => saveGameToCloud()}>
+                                        <Text color='white'>SAVE</Text>
+                                        <Icon as={IoIosHeart} color='white'/>
+                                        <Icon as={IoIosHeartHalf} color='white'/>
+                                        <Icon as={IoIosHeartEmpty} color='white'/>
+                                    </Button>
+                                    <Button mt='2' bg='red.600' className='TEXT' isDisabled={!isDisabled} onClick={() => deleteFromCloud()}>
+                                        <Text color='white'>DELETE</Text>
+                                        <Icon as={FaTrash} color='white'/>
+                                    </Button>
+                                </Flex>
                             </Flex>
                     </Box>
                 </Flex>

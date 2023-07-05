@@ -3,7 +3,7 @@ import './App.css';
 import { ChakraProvider, Flex, Box, Hide, Show, Text, useDisclosure } from '@chakra-ui/react';
 import { useKey } from '../../hooks/useKey';
 // --APICALL--
-import { findRecentlyReleasedSample, findAnticipatedSample } from '../../utils/apiCalls';
+import { findRecentlyReleasedSample, findAnticipatedSample, displaySaved } from '../../utils/apiCalls';
 // --COMPONENTS--
 import { NavBar } from '../NavBar/NavBar';
 import { Search } from '../Search/Search'
@@ -63,7 +63,7 @@ export const App = () => {
         console.log(error)
       })
   }, [])
-
+  
 
   const handleChange = (event) => {
     setInput(event.target.value)
