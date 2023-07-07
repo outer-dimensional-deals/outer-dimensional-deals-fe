@@ -1,9 +1,11 @@
 import React from 'react'
 import './Profile.css'
-import {Text} from '@chakra-ui/react'
+import { Text, Box } from '@chakra-ui/react'
 
 export const Profile = () => {
     return (
-        <Text>Profile</Text>
+        <Box h='100%' w='100%'>
+
+        </Box>
     )
 }

@@ -13,11 +13,9 @@ export const HomePage = ({searchResults, isLoaded}) => {
 
     return (
           <Flex h='40em' w='100%' direction='column' align='center' overflowY='scroll'>
-            <Heading>Spotlight</Heading>
-            <Text>This Will Show at max 5 games to spotlight on a tv screen</Text>
-            <Box h='auto' w='90%' bg='gray.800' rounded='md' p='10' mb='20'>
+            {searchResults.length > 0 ? <Box h='auto' w='90%' bg='gray.800' rounded='md' p='10' mb='10' mt='10'>
               <GameCardContainer data={searchResults} isLoaded={isLoaded}/>
-            </Box>
+            </Box> : null}
           </Flex>
     )
 }
