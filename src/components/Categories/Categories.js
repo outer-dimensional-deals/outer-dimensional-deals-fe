@@ -79,10 +79,10 @@ const TabContent = ({ selectedGenre }) => {
     })
 
     return (
-        <Box maxH='75em' maxW='100%' overflow='hidden' p='10'>
-            <Flex h='25em' bg='gray.800' flexDir='column' boxShadow='dark-lg'>
+        <Box maxH='100%' maxW='100%' overflow='hidden' >
+            <Flex h='25em' bg='gray.800' flexDir='column' boxShadow='dark-lg' rounded='md'>
                 <Text color='white' align='center' className='TEXT' m='2'>{genres[selectedGenre].name}</Text>
-                <Flex overflow='scroll' p='10' h='100%'>
+                <Flex flexDir='row' overflow='scroll' p='10' h='100%'>
                     {displayData}
                     <Link to={`/Categories/:${genres[selectedGenre].name}`} state={{id: genres[selectedGenre].id}}>
                         <Button w='12em' h='15.1em' borderWidth='1px' rounded='md' boxShadow='dark-lg' position='relative' transition='500ms' _hover={{ boxShadow: 'outline', transform: 'scale(1.06)', zIndex: '1'}} m={1}>VIEW MORE</Button>
@@ -97,8 +97,8 @@ export const Categories = () => {
     const [selectedTab, setSelectedTab] = useState(0);
 
     return (
-        <Container maxW='75vw' mt='10' overflow='hidden' bg='gray.700'>
-            <Tabs h='100%' w='100%' variant='soft-rounded' isLazy onChange={setSelectedTab}>
+        <Container h='90vh' maxW={['100vw', '75vw']} mt='10' overflow='hidden'>
+            <Tabs h='100%' w={['90%', '100%']} variant='soft-rounded' isLazy onChange={setSelectedTab}>
                 <TabList spacing={5} overflowY='scroll' bg='blue.900' boxShadow='dark-lg'>
                     {genres.map((genre, idx) => {
                         return (
@@ -109,7 +109,7 @@ export const Categories = () => {
                 <TabPanels>
                     {genres.map((genre, idx) => {
                         return (
-                        <TabPanel>
+                        <TabPanel h='100%' w='100%'>
                             <TabContent selectedGenre={idx} />
                         </TabPanel>)
                     })}

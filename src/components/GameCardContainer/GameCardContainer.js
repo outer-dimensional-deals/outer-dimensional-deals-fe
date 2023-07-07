@@ -32,7 +32,7 @@ export const GameCardContainer = ({data, isLoaded}) => {
 
     return (
       <>
-          <SimpleGrid className='GRID' h='100%' w='100%' columns={[1, 2, 3, 4]} spacing='40px' p={[0, 5]} align='center'>
+          <SimpleGrid className='GRID' h='100%' w='100%' columns={[1, 2, 2, 2, 3]} spacing='40px' p={[0, 5]} align='center'>
             {mapData}
           </SimpleGrid>
       </>

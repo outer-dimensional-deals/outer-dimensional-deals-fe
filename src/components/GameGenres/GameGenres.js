@@ -35,7 +35,7 @@ export const GameGenres = (props) => {
     }, [])
 
     return (
-        <Box h='39em' w='100%' overflow='scroll' p='10'>
+        <Box h='39em' w='100%' overflowY='scroll' p='10'>
             <GameCardContainer data={genreStack} isLoaded={isLoaded}/>
         </Box>
     )

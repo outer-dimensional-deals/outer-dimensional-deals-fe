@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './GameDetails.css'
-import { Box, Container, Flex, Text, Image, Tag, SimpleGrid, Tabs, TabList, TabPanels, Tab, TabPanel, Button, Icon} from '@chakra-ui/react'
+import { Box, Container, Flex, Text, Image, Tag, SimpleGrid, Tabs, TabList, TabPanels, Tab, TabPanel, Button, Icon, Hide, Show} from '@chakra-ui/react'
 // --ROUTER--
 import { useLocation } from 'react-router-dom';
 import { displaySaved, findGameDeals, saveData, deleteData } from '../../utils/apiCalls';
@@ -48,7 +48,7 @@ export const GameDetails = (props) => {
     const videosDisplay = videos.map((element, index) => {
         return (
             <TabPanel key={index}>
-                <iframe className='VIDEO-DISPLAY' key={index} height='400em' width="100%" src={`https://www.youtube.com/embed/${element.video_id}`} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;" allowFullScreen></iframe>
+                <iframe className='VIDEO-DISPLAY' key={index} height='320em' width="100%" src={`https://www.youtube.com/embed/${element.video_id}`} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;" allowFullScreen></iframe>
             </TabPanel>
         )
     })
@@ -56,7 +56,7 @@ export const GameDetails = (props) => {
     const screenshotsDisplay = photos?.map((element, index) => {
         return (
             <TabPanel>
-                <Image className='VIDEO-DISPLAY' h='25em' w='100%' src={element.url.replace('t_thumb', 't_cover_big')} />
+                <Image className='VIDEO-DISPLAY' h='20em' w='100%' src={element.url.replace('t_thumb', 't_cover_big')} />
             </TabPanel>
         )
     })
@@ -88,7 +88,7 @@ export const GameDetails = (props) => {
             <Flex h='100%' w='100%' justifyContent='space-between' border='1px'>
                 <Text className='TEXT' ml='2' color='white'>{element.title}</Text>
                 <Flex justifyContent='space-around'>
-                    <Text mr='3' className='TEXT' color='white'>Normal: {element.normalPrice}</Text>
+                    <Text mr='3' ml='3' className='TEXT' color='white'>Normal: {element.normalPrice}</Text>
                     <Text color='white' mr='3'>|</Text>
                     <Text mr='3' className='TEXT' color='white'>Sales: {element.salePrice}</Text>
                 </Flex>
@@ -164,52 +164,130 @@ export const GameDetails = (props) => {
     }
 
     return (
-        <Box h='100vh' w='75vw' overflow='hidden'>
-            <Flex h='100%' w='100%' p='10' flexDirection='column' overflowY='scroll'>
-                <Text className='TEXT' color='white' bg='blue.900'>{details.name}</Text>
-                <Flex h='90%' w='100%' justifyContent='space-around' bg='gray.800' boxShadow='lg'>
-                    <Box h='100%' w='60%' bg='blackAlpha.400' boxShadow='dark-lg'>
-                        <Tabs variant='soft-rounded'>
-                            <TabPanels>
-                                {videos.length <= 0 ? null : videosDisplay}
-                                {!photos || photos.length <= 0 ? null : screenshotsDisplay}
-                            </TabPanels>
-                            <TabList overflow='scroll' border='10px' bg='blue.900' mb='2%' boxShadow='dark-lg'>
-                                {videos.length <= 0 ? null : videosName}
-                                {!photos || photos.length <= 0 ? null : screenshotsName}
-                            </TabList>
-                        </Tabs>
-                    </Box>
-                    <Box h='100%' w='30%' pt='4' pr='4' pl='4' mb='2%' bg='blackAlpha.400' boxShadow='dark-lg'>
-                        <Box align='center'>
-                            <Image boxSize='60%' ratio={3 / 4} objectFit='cover' src={propsData.data.cover.url.replace('t_thumb', 't_cover_big')} rounded='md' boxShadow='lg' />
-                        </Box>  
-                        <Box h='15%' mt='2' overflow='hidden'>
-                            <Box h='100%' overflow='scroll'>
-                            {details.summary ? <Text mt='1' className='TEXT' fontSize='20%' color='white'>{details.summary}</Text> : <Text mt='3' mb='3' className='TEXT' fontSize='20%'>{details.storyline}</Text>}
+        <>
+        <Hide below='769px'>
+            <Box h='100vh' w='75vw' overflow='hidden'>
+                    <Flex h='100%' w='90%' p='10' flexDirection='column' overflowY='scroll'>
+                        <Text className='TEXT' color='white' bg='blue.900'>{details.name}</Text>
+                        <Flex h='90%' w='100%' justifyContent='space-around' bg='gray.800' boxShadow='lg'>
+                            <Box h='100%' w='60%' bg='blackAlpha.400' boxShadow='dark-lg'>
+                                <Tabs variant='soft-rounded'>
+                                    <TabPanels>
+                                        {videos.length <= 0 ? null : videosDisplay}
+                                        {!photos || photos.length <= 0 ? null : screenshotsDisplay}
+                                    </TabPanels>
+                                    <TabList overflow='scroll' border='10px' bg='blue.900' mb='2%' mt='5%' boxShadow='dark-lg'>
+                                        {videos.length <= 0 ? null : videosName}
+                                        {!photos || photos.length <= 0 ? null : screenshotsName}
+                                    </TabList>
+                                </Tabs>
                             </Box>
-                        </Box>
-                            <Flex flexDir='column'>
-                                {genresDisplay}
-                                <Flex flexDir='default' justifyContent='space-between'>
-                                    <Button mt='2' className='TEXT' boxShadow='dark-lg' bg='blue.900' isDisabled={isDisabled} onClick={() => saveGameToCloud()}>
-                                        <Text color='white'>SAVE</Text>
-                                        <Icon as={IoIosHeart} color='white'/>
-                                        <Icon as={IoIosHeartHalf} color='white'/>
-                                        <Icon as={IoIosHeartEmpty} color='white'/>
-                                    </Button>
-                                    <Button mt='2' bg='red.600' className='TEXT' isDisabled={!isDisabled} onClick={() => deleteFromCloud()}>
-                                        <Text color='white'>DELETE</Text>
-                                        <Icon as={FaTrash} color='white'/>
-                                    </Button>
-                                </Flex>
+                            <Box h='100%' w='30%' pt='4' pr='4' pl='4' mb='2%' bg='blackAlpha.400' boxShadow='dark-lg'>
+                                <Box align='center'>
+                                    <Image boxSize='40%' ratio={3 / 4} objectFit='cover' src={propsData.data.cover.url.replace('t_thumb', 't_cover_big')} rounded='md' boxShadow='lg' />
+                                </Box>  
+                                <Box h='15%' mt='5' overflow='hidden'>
+                                    <Box h='100%' overflow='scroll'>
+                                    {details.summary ? <Text mt='1' className='TEXT' fontSize='20%' color='white'>{details.summary}</Text> : <Text mt='3' mb='3' className='TEXT' fontSize='20%'>{details.storyline}</Text>}
+                                    </Box>
+                                </Box>
+                                    <Flex flexDir='column'>
+                                        {genresDisplay}
+                                        <Flex flexDir='default' justifyContent='space-between'>
+                                            <Button mt='2' className='TEXT' boxShadow='dark-lg' bg='blue.900' isDisabled={isDisabled} onClick={() => saveGameToCloud()}>
+                                                {/* <Text color='white'>SAVE</Text> */}
+                                                <Icon as={IoIosHeart} color='white'/>
+                                                <Icon as={IoIosHeartHalf} color='white'/>
+                                                <Icon as={IoIosHeartEmpty} color='white'/>
+                                            </Button>
+                                            <Button mt='2' bg='red.600' className='TEXT' isDisabled={!isDisabled} onClick={() => deleteFromCloud()}>
+                                                {/* <Text color='white'>DELETE</Text> */}
+                                                <Icon as={FaTrash} color='white'/>
+                                            </Button>
+                                        </Flex>
+                                    </Flex>
+                            </Box>
+                        </Flex>
+                        <Flex h='100%' w='100%' flexDir='column' mt='5%' mb='20%' bg='blue.800'>
+                            {displayDeals}
+                        </Flex>
+                    </Flex>
+            </Box>
+        </Hide>
+        <Show below='769px'>
+            <Box h='100vh' w='100%' overflow='hidden' position='absolute'>
+                <Flex maxH='100%' w='100%' flexDir='column' align='center' overflow='scroll' bg='gray.700' p='4'>
+                    <Text w='100%' className='TEXT' color='white' bg='blue.900' mt='2'>{details.name}</Text>
+                    <Box h='40%' align='center' bg='gray.800'>
+                        <Flex h='100%' w='90%' flexDir='column' align='center' bg='blackAlpha.300' boxShadow='dark-lg'>
+                            <Box h='40%' w='30%' className='IMAGE' align='center' mt='2'>
+                                <Image boxSize='100%' ratio={3 / 4} objectFit='cover' src={propsData.data.cover.url.replace('t_thumb', 't_cover_big')} rounded='md' boxShadow='lg' />
+                            </Box>
+                            <Box h='30%' w='90%' overflow='hidden'>
+                                <Box h='100%' overflow='scroll'>
+                                    {details.summary ? <Text mt='1' className='TEXT' fontSize='20%' color='white'>{details.summary}</Text> : <Text mt='3' mb='3' className='TEXT' fontSize='20%'>{details.storyline}</Text>}
+                                </Box>
+                            </Box>
+                            <Flex flexDir='default' w='100%' justifyContent='space-around'>
+                                <Button mt='2' mb='2' className='TEXT' boxShadow='dark-lg' bg='blue.900' isDisabled={isDisabled} onClick={() => saveGameToCloud()}>
+                                    <Icon as={IoIosHeart} color='white'/>
+                                    <Icon as={IoIosHeartHalf} color='white'/>
+                                    <Icon as={IoIosHeartEmpty} color='white'/>
+                                </Button>
+                                <Button mt='2' mb='2' bg='red.600' className='TEXT' isDisabled={!isDisabled} onClick={() => deleteFromCloud()}>
+                                    <Icon as={FaTrash} color='white'/>
+                                </Button>
                             </Flex>
+                        </Flex>
                     </Box>
+                    <Box h='40%' w='100%' bg='gray.800' align='center'>
+                        <Flex h='100%' w='90%' bg='blackAlpha.300' boxShadow='dark-lg' overflow='hidden'>
+                            <Tabs h='100%' w='100%' variant='soft-rounded'>
+                                <TabPanels>
+                                    {videos && videos.map((element, index) => {
+                                        return (
+                                        <TabPanel key={index} h='100%' w='100%'>
+                                            <iframe className='VIDEO-DISPLAY' key={index} height='55%' width="100%" src={`https://www.youtube.com/embed/${element.video_id}`} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;" allowFullScreen></iframe>
+                                        </TabPanel>
+                                        )
+                                    })}
+                                    {photos && photos.map((element, index) => {
+                                        return (
+                                        <TabPanel key={index}>
+                                            <Image className='VIDEO-DISPLAY' h='100%' w='100%' src={element.url.replace('t_thumb', 't_cover_big')} />
+                                        </TabPanel>
+                                        )
+                                    })}
+                                </TabPanels>
+                                <TabList overflowX='scroll' overflowY='hidden' bg='blue.900' boxShadow='dark-lg'>
+                                    {videos && videos.map((element, index) => {
+                                        return (
+                                        <Tab key={index}>
+                                            <Text className='TEXT' color='white'>
+                                                {element.name}
+                                            </Text>
+                                        </Tab>
+                                        )
+                                    })}
+                                    {photos && photos.map((element, index) => {
+                                        return (
+                                        <Tab key={index}>
+                                            <Text className='TEXT' color='white'>Screenshot {index + 1}</Text>
+                                        </Tab>
+                                        )
+                                    })}
+                                </TabList>
+                            </Tabs>
+                        </Flex>
+                    </Box>
+                    {deals.length > 0 ? <Box h='20%' w='100%'>
+                        <Flex h='100%' w='100%' flexDir='column' mt='2' bg='blue.800'>
+                            {displayDeals}
+                        </Flex>
+                    </Box> : null}
                 </Flex>
-                <Flex h='100%' w='100%' flexDir='column' mt='5%' mb='20%' bg='blue.800'>
-                    {displayDeals}
-                </Flex>
-            </Flex>
-        </Box>
+            </Box>
+        </Show>
+        </>
     )
 }
