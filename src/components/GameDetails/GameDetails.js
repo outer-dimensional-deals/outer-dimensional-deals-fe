@@ -215,7 +215,7 @@ export const GameDetails = (props) => {
             </Box>
         </Hide>
         <Show below='769px'>
-            <Box h='100vh' w='100%' overflow='hidden' position='absolute'>
+            <Box h='100vh' w='100%' overflow='hidden'>
                 <Flex maxH='100%' w='100%' flexDir='column' align='center' overflow='scroll' bg='gray.700' p='4'>
                     <Text w='100%' className='TEXT' color='white' bg='blue.900' mt='2'>{details.name}</Text>
                     <Box h='40%' align='center' bg='gray.800'>
