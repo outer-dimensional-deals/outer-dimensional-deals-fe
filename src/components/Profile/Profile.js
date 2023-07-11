@@ -4,7 +4,7 @@ import { Text, Box } from '@chakra-ui/react'
 
 export const Profile = () => {
     return (
-        <Box h='100%' w='100%'>
+        <Box h='100vh' w='100%'>
 
         </Box>
     )
