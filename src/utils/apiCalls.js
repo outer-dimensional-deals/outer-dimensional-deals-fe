@@ -1,5 +1,5 @@
 export async function searchGameCloud(options) {
-    const response = await fetch('http://localhost:3001/search_games', options)
+    const response = await fetch('https://outer-dimensional-deals-be.vercel.app/search_games', options)
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`)
         }
@@ -8,7 +8,7 @@ export async function searchGameCloud(options) {
 }
 
 export async function deleteData(options) {
-    const response = await fetch('http://localhost:3001/delete_data', options)
+    const response = await fetch('https://outer-dimensional-deals-be.vercel.app//delete_data', options)
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`)
         }
@@ -18,7 +18,7 @@ export async function deleteData(options) {
 
 
 export async function saveData(options) {
-    const response = await fetch('http://localhost:3001/save_data', options)
+    const response = await fetch('https://outer-dimensional-deals-be.vercel.app/save_data', options)
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`)
         }
@@ -27,7 +27,7 @@ export async function saveData(options) {
 }
 
 export async function displaySaved() {
-    const response = await fetch('http://localhost:3001/display_saved')
+    const response = await fetch('https://outer-dimensional-deals-be.vercel.app/display_saved')
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`)
         }
@@ -36,7 +36,7 @@ export async function displaySaved() {
 }
 
 export async function findFullGameGenre(options) {
-    const response = await fetch('http://localhost:3001/genre_full', options)
+    const response = await fetch('https://outer-dimensional-deals-be.vercel.app/genre_full', options)
     if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`)
     }
@@ -54,7 +54,7 @@ export async function listOfStores() {
 };
 
 export async function findRecentlyReleasedGames() {
-    const response = await fetch('http://localhost:3001/recently_released')
+    const response = await fetch('https://outer-dimensional-deals-be.vercel.app/recently_released')
     if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`)
     }
@@ -63,7 +63,7 @@ export async function findRecentlyReleasedGames() {
 }
 
 export async function findAnticipatedGames() {
-    const response = await fetch('http://localhost:3001/anticipated')
+    const response = await fetch('https://outer-dimensional-deals-be.vercel.app/anticipated')
     if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`)
     }
@@ -73,7 +73,7 @@ export async function findAnticipatedGames() {
 
 //SAMPLE SIZES
 export async function findRecentlyReleasedSample() {
-    const response = await fetch('http://localhost:3001/recently_released_sample')
+    const response = await fetch('https://outer-dimensional-deals-be.vercel.app/recently_released_sample')
     if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`)
     }
@@ -82,7 +82,7 @@ export async function findRecentlyReleasedSample() {
 }
 
 export async function findAnticipatedSample() {
-    const response = await fetch('http://localhost:3001/anticipated_sample')
+    const response = await fetch('https://outer-dimensional-deals-be.vercel.app/anticipated_sample')
     if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`)
     }
@@ -91,7 +91,7 @@ export async function findAnticipatedSample() {
 }
 
 export async function findGameGenre(options) {
-    const response = await fetch('http://localhost:3001/genre', options)
+    const response = await fetch('https://outer-dimensional-deals-be.vercel.app/genre', options)
     if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`)
     }
