@@ -13,26 +13,12 @@
 
 ## Project Specs
 
-
-## Illustrations
-
-
-## Setup
-
-- In your terminal, clone the repo
-- Make a new directory and cd into it
-- Install NPM packages
-- `npm install`
-- Then type `npm start` . This runs the app in the development mode.
-- Open http://localhost:3000 to view it in your browser.
-- The browser should then deploy using a local host
-- Start the server to see the local site `npm start`
-
-## Project Management
-
+This is a refactored version of a project I did during school, it renders a complete list of videogames either by a category/genre or search and shows available deals while providing links of where to purchase. The original project dubbed 'Kraken's Cove', and did not provide nearly as much detailed data about specific video games as this current version. Outer Dimensional Deals has a heavier potential as it offers lazy loading, custom hooks, and better error handling than it's predacessor. 
 
 ## Future Features
 
+- Testing (Vice/Jest)
+- Small bug in rendering the location screen (requires global state management)
 
 ## Contributors (front-end)
 
