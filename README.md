@@ -19,6 +19,9 @@ This is a refactored version of a project I did during school, it renders a comp
 
 - Testing (Vice/Jest)
 - Small bug in rendering the location screen (requires global state management)
+- Location screen requires custom animations 
+- Error Component needs to be built (custom animations)
+- Better rendering of video game screenshots (extremely blurry)
 
 ## Contributors (front-end)
 
