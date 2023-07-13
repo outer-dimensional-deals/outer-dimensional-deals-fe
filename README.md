@@ -16,8 +16,6 @@ This is a refactored version of a project I did during school, it renders a comp
 
 ## Illustrations 
 
-
-
 ## Future Features
 
 - Testing (Vice/Jest)
@@ -27,6 +25,7 @@ This is a refactored version of a project I did during school, it renders a comp
 - Better rendering of video game screenshots (extremely blurry)
 - Profile/Login (User should be able to have to ability to customise)
 - Redux (should debug the locations issue that occurs when return to a page..)
+
 
 ## Contributors (front-end)
 
